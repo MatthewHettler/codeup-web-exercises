@@ -1,9 +1,61 @@
 .fancy-header {
     color: purple;
     text-decoration: underline;
+    text-align: center;
+    text-shadow: 1px 1px white;
 }
 
 h3 {
     color:blue;
     text-decoration: underline;
+    text-shadow: 1px 1px white;
+}
+
+.main {
+    background-color: white;
+    background-image: url("https://images.pexels.com/photos/1029611/pexels-photo-1029611.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+    background-size: cover;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+ol {
+    color: white;
+    text-shadow: 1px 1px black;
+    list-style: upper-alpha;
+}
+ul {
+    color: white;
+    text-shadow: 1px 1px black;
+    list-style: square;
+}
+
+table {
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+p {
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+a:link {
+    color:red;
+ }
+
+a:hover {
+    color:white;
+}
+
+a:visited {
+    color:black;
+}
+
+a:active {
+    color:green;
+}
+
+tr td {
+    padding: 10px;
+    font-size: 100%;
 }
