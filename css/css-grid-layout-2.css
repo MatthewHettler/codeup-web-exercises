@@ -1,21 +1,37 @@
 * {
+    /* Always include this when starting a grid box. */
     box-sizing: border-box;
 }
 
 body {
+    /* This section sets up the grid lines. */
     margin: 0;
     grid-row-gap: 10px;
     grid-column-gap: 10px;
 }
 
 main {
+    /* These properties setup the entire grid layout. */
     display: grid;
     height: 100vh;
     width: 100vw;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr 7fr repeat(2, 1fr);
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 6fr repeat(2, 1fr);
     grid-column-gap: 10px;
-    grid-row-gap: 10px
+    grid-row-gap: 10px;
 }
 
+main div {
+    /* Changes the color of the individuals areas. */
+    background-color: #9ACD32;
+    /* Shifts the text over to mirror the example. */
+    padding: 1.2em;
+}
+
+/* This is where you setup how much space the boxes take up. */
+.header { grid-area: 1 / 1 / span 1 / span 2}
+.nav { grid-area: 2 / 1 / span 2 / span 1}
+.article { grid-area: 2 / 2 / span 1 / span 1}
+.ads { grid-area: 3 / 2 / span 1 / span 1}
+.footer { grid-area: 4 / 1 / span 1 / span 2}
 
