@@ -1,0 +1,48 @@
+* {
+    /* Always include this when starting a grid box. */
+    box-sizing: border-box;
+}
+
+body {
+    /* This section sets up the grid lines. */
+    margin: 0;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+}
+
+main {
+    /* These properties setup the entire grid layout. */
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+main div {
+    /* Changes the color of the individuals areas. */
+    background-color: #FFD700;
+    /* Sets the text color. */
+    color: white;
+    /* Sets the text size. */
+    font-size: 320%;
+    /* Shifts the text over to mirror the example. */
+    padding: .2em;
+
+}
+
+/* This is where you setup how much space the boxes take up. */
+.one { grid-area: 1 / 1 / span 1 / span 4}
+.two { grid-area: 2 / 1 / span 4 / span 1}
+.three { grid-area: 2 / 2 / span 1 / span 1}
+.four { grid-area: 2 / 3 / span 1 / span 2}
+.five { grid-area: 3 / 2 / span 1 / span 2}
+.six { grid-area: 3 / 4 / span 1 / span 1}
+.seven { grid-area: 4 / 2 / span 1 / span 1}
+.eight { grid-area: 4 / 3 / span 1 / span 1}
+.nine { grid-area: 4 / 4 / span 1 / span 1}
+.ten { grid-area: 5 / 2 / span 1 / span 3}
+
+
