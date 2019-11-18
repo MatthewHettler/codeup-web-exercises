@@ -1,0 +1,72 @@
+* {
+    /* Always include this when starting a grid box. */
+    box-sizing: border-box;
+}
+
+body {
+    /* This sets the grid to have no white space around the box. */
+    margin: 0;
+}
+
+main {
+    /* These properties setup the entire grid layout. */
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 5fr 3fr 1fr;
+    overflow: auto;
+}
+
+ main div {
+    /* Sets the text color. */
+    color: darkslategrey;
+    /* Sets the text size. */
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-around;
+    background-color: #111111;
+    list-style: none;
+    padding-left: 0px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 1em;
+}
+
+a:hover {
+    display: inline-block;
+    position: relative;
+    background-color: #333333;
+    text-decoration: none;
+}
+
+/* This is where you setup how much space the boxes take up. */
+.one {
+    grid-area: 1 / 1 / span 1 / span 2;
+    background-color: #111111;
+}
+.two {
+    grid-area: 2 / 1 / span 3 / span 1;
+    background-color: #F0F0F0;
+}
+.three {
+    grid-area: 2 / 2 / span 1 / span 1;
+    background-color: #FFFFFF
+}
+.four {
+    grid-area: 3 / 2 / span 1 / span 1;
+    background-color: #666666
+}
+.five {
+    grid-area: 4 / 2 / span 1 / span 1;
+    background-color: #333333;
+}
+
+
