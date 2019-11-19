@@ -1,57 +1,51 @@
 * {
     box-sizing: border-box;
 }
-
+/*Styles the whole box*/
 body {
-    margin: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 1em;
     font-family: sans-serif;
+    margin: 1em;
 }
-
+/*Styles the "Skip to main content section*/
 .alert-info {
-    background: #CCFFFF;
+    padding: 1em;
     border: .1em solid #CCCCCC;
-    text-align: center;
-    padding: 1em 0;
     width: 100%;
+    background: #CCFFFF;
+    text-align: center;
 }
 
-.alert-info a{
+.alert-info a {
+    color: #111111;
     text-decoration: none;
 }
-
+/*Styles the Company header*/
 h1 {
-    font-size: 3em;
-    margin: .2em;
+    margin: .1em;
+    font-size: 300%;
 }
-
+/*Styles the nav-links section*/
 .nav-links {
+    padding: 1em;
+    background: #CCCCCC;
+    text-align: center;
     list-style: none;
 }
 
-.nav-links li {
-    background-color: #C2C2C2;
-    margin: .1em;
-    width: 100%;
-    padding: 1em 0;
-    text-align: center;
+.nav-links a {
+    display: inline-block;
+    padding: 1em;
 }
 
 
 
-/*.nav-links a {*/
-/*    display: block;*/
-/*    width: 341px;*/
-/*    height: 50px;*/
-/*    background: #CCCCCC;*/
-}
 
 
-/* Small devices (tablets, 768px and up) */
+
+/* Small devices (tablets, 500px and up) */
 @media screen and (max-width:500px) {
 }
 
@@ -59,3 +53,5 @@ h1 {
 @media screen and (min-width:800px) {
 
 }
+
+
