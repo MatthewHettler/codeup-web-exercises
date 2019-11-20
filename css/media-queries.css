@@ -1,19 +1,13 @@
-* {
-    box-sizing: border-box;
-}
-/*Styles the whole box*/
+
+/*Styles the whole body area*/
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: sans-serif;
-    margin: 1em;
+    font-family: 'PT Sans', sans-serif;
 }
 /*Styles the "Skip to main content section*/
 .alert-info {
     padding: 1em;
+    margin: auto;
     border: .1em solid #CCCCCC;
-    width: 100%;
     background: #CCFFFF;
     text-align: center;
 }
