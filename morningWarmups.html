@@ -141,6 +141,26 @@
     // console.log(greaterThanTen(100)); // true
     // console.log(greaterThanTen(1)); // false
 
+    // write a js function called youMayEnter that accepts a number that is an age.
+    // If the age is 13 or greater, return "You may enter!" else, return "Sorry,
+    // you need a parent or guardian to enter."
+
+    //1. write a function named youMayEnter
+    //2. parameter is a number
+    //3. number >= 13 --> "You may enter!" (conditional)
+    //4. if they are < 13 --> "Sorry, you need a parent or guardian to enter."
+
+    function youMayEnter(num) {
+        if (num >= 13) {
+            return "You may enter!"
+        } else {
+            return "Sorry, you need a parent or guardian to enter."
+        }
+    }
+
+    console.log(youMayEnter(14)); // you may enter
+    console.log(youMayEnter(11)); // sorry message
+
 </script>
 
 <!--<table>-->
