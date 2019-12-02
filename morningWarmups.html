@@ -158,8 +158,31 @@
         }
     }
 
-    console.log(youMayEnter(14)); // you may enter
-    console.log(youMayEnter(11)); // sorry message
+    // console.log(youMayEnter(14)); // you may enter
+    // console.log(youMayEnter(11)); // sorry message
+
+    // //write a js function called seeYouLater that accepts a string. If the string is alligator, return "See you later alligator!", if the string is crocodile, return "After while crocodile!", if the string is not either, return "So long!"
+
+    // 1. Write a function --> seeYouLater(inputString)
+    // 2. if means use a conditional statement -- we have 3 conditions to check
+    // 3. alligator --> see you later
+    // 4. crocodile --> after while
+    // 5. something different --> so long
+
+    function seeYouLater(inputString) {
+        if (inputString == "alligator") {
+            return "See you later alligator!"
+        } else if (inputString == "crocodile") {
+            return "After while crocodile!"
+        } else {
+            return "So long!"
+        }
+    }
+
+    console.log(seeYouLater("alligator")); // output = See you later alligator!
+    console.log(seeYouLater("crocodile")); // output = after while crocodile!
+    console.log(seeYouLater("random")); // output = So long!
+
 
 </script>
 
