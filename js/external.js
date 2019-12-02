@@ -1,3 +1,5 @@
+"use strict";
+
 // TODO: Add a console.log message in external.js that says "Hello from external JavaScript".
 
 // console.log("Hello from external JavaScript.");
