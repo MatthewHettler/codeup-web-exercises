@@ -207,7 +207,7 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
 //     }
 //
 // }
-//
+
 // console.log(calculateTotal(5, 100));
 
 /**
@@ -219,5 +219,38 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  */
 // Generate a random number between 0 and 6
 var luckyNumber = Math.floor(Math.random() * 6);
+alert("Let's see if you've won a discount on today's purchase!");
+var totalAmount = Number(prompt("What was your total bill?"));
+
+function calculateTotal(){
+
+    if (luckyNumber === 0){
+        alert("Sorry, you receive no discount because you didn't roll a lucky number. Try again!")
+    } else if (luckyNumber === 1) {
+        alert("Congratulations! Your lucky number is 1!");
+        alert("Your price before discount is $" + totalAmount + ".");
+        alert("Your price after discount is $" + (totalAmount * .10) + "!");
+    } else if (luckyNumber === 2){
+        alert("Congratulations! Your lucky number is 2!");
+        alert("Your price before discount is $" + totalAmount + ".");
+        alert("Your price after discount is $" + (totalAmount * .25) + "!");
+    } else if (luckyNumber === 3){
+        alert("Congratulations! Your luck number is 3!");
+        alert("Your price before discount is $" + totalAmount + ".");
+        alert("Your price after discount is $" + (totalAmount * .35) + "!");
+    } else if (luckyNumber === 4){
+        alert("Congratulations! Your luck number is 4!");
+        alert("Your price before discount is $" + totalAmount + ".");
+        alert("Your price after discount is $" + (totalAmount * .50) + "!");
+    } else if (luckyNumber === 5){
+        alert("You're a winner! Your purchase is free!")
+    }
+}
+
+console.log(calculateTotal(luckyNumber));
+
+
+
+
 
 
