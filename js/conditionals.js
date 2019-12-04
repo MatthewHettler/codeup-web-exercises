@@ -16,7 +16,13 @@
  * Can you refactor your code to use functions?
  */
 
+var confirmMessage = confirm("Would you like to enter a number?");
 
+if (confirmMessage === true) {
+    prompt("Please enter a number.");
+} else {
+    alert ("No problem, have a good day!");
+}
 
 /* ########################################################################## */
 

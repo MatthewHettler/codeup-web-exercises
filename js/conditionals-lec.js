@@ -287,6 +287,18 @@
 // }
 // console.log(message);
 
+//***** Another Way to Write a Ternary With a Function *****//
+
+// var isAdmin = true;
+//
+// if(isAdmin){
+//     showAdminNavbar();
+// } else {
+//     showRegularNavbar();
+// }
+//
+// (isAdmin) ? showAdminNavbar() : showRegularNavbar();
+
 
 // var success = true;
 // var message = (success) ? "Operation was successful from tern." : "Oops, something went wrong from tern.";
@@ -297,7 +309,7 @@
 
 // var weather = "sunny";
 // var weatherMessage;
-
+//
 // if(weather === "rainy"){
 //    weatherMessage = "It's raining!";
 // } else {
@@ -306,6 +318,10 @@
 
 //WRITE YOUR TERNARY STATEMENT HERE!
 
+// var weather = "rainy";
+// var weatherMessage = (weather === "rainy") ? "It's raining" : "Have a nice day";
+//
+// console.log(weatherMessage);
 
 
 // =============== SWITCH STATEMENT ================
@@ -328,8 +344,73 @@
 
 //TODO: Write a switch statement that evaluates weather as the condition. Check for "rainy", "sunny", "snow", and a default case.
 
+// var weather = "sunny";
+//
+// switch(weather){
+//     case "rainy":
+//         alert("It's raining!");
+//         break;
+//     case "sunny":
+//         alert("It's sunny!");
+//         break;
+//     case "snow":
+//         alert("It's snowing!");
+//         break;
+//     default:
+//         alert("Have a nice day!");
+//         break;
+// }
+
+// function checkWeather(weather){
+//     var weatherMessage;
+//
+//     switch(weather){
+//         case "rainy":
+//             weatherMessage = "It's raining";
+//             break;
+//         case "sunny":
+//             weatherMessage = "It's sunny";
+//             break;
+//         case "snow":
+//             weatherMessage = "It's snowing";
+//             break;
+//         default:
+//             weatherMessage = "Have a nice day";
+//             break;
+//     }
+//
+//     return weatherMessage
+//
+//
+// }
+//
+// console.log(checkWeather("sunny"));
 
 //TODO: Rewrite the intersection function from earlier as a switch statement.
+
+// function trafficLight(color){
+//     var trafficMessage;
+//
+//     switch(color){
+//         case "green":
+//             trafficMessage = "Go!";
+//             break;
+//         case "yellow":
+//             trafficMessage = "Slow down!";
+//             break;
+//         case "red":
+//             trafficMessage = "Stop!";
+//             break;
+//         default:
+//             trafficMessage = "Proceed With Caution.";
+//             break;
+//     }
+//
+//     return trafficMessage;
+//
+// }
+//
+// console.log(trafficLight("green"));
 
 
 
