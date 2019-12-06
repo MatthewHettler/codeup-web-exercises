@@ -183,7 +183,21 @@
     // console.log(seeYouLater("crocodile")); // output = after while crocodile!
     // console.log(seeYouLater("random")); // output = So long!
 
+    // Write a js function that takes in another function.
 
+    function functionA(callbackFunction){
+        callbackFunction("It work's!");
+    }
+    functionA(function(message){
+        alert(message);
+    });
+
+    function functionOne(callbackFunction){
+        callbackFunction();
+    }
+    functionOne(function(){
+        alert("It work's!");
+    });
 
 </script>
 
