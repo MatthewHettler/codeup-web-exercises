@@ -10,7 +10,7 @@
      * console.log planetsArray to check your work
      */
 
-    // var planetsArray = planetsString.split(",");
+    var planetsArray = planetsString.split(",");
     //
     // console.log(planetsArray);
 
@@ -27,5 +27,17 @@
 
     // var planetsString2 = planetsArray.join('<br>');
     // console.log(planetsString2);
+
+    planetsString = planetsArray.join("<br>");
+    console.log(planetsString);
+
+    var planetsUl = "<ul>";
+    planetsArray.forEach(function (planet) {
+        planetsUl += "<li>" + planet + "</li>";
+    });
+    planetsUl += "</ul>";
+
+    console.log(planetsUl);
+    document.getElementById("planets").innerHTML = planetsUl;
 
 })();
