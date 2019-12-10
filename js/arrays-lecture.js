@@ -46,16 +46,45 @@ var favoriteNumbers = [42, 77, 22, 17, 3.141592, 74, 100000000, 12];
 // });
 
 var fruit = ["apple", "orange", "banana"];
-// fruit[fruit.length] = "pear";
-console.log(fruit);
-alert("Hello");
-console.log(fruit.push("pear","pineapple","grape","mango"));
-// fruit.push("pineapple");
-// fruit.push("grape");
-// fruit.push("mango");
-console.log(fruit.shift());
-console.log(fruit.unshift("strawberry"));
-console.log(fruit.indexOf("pineapple"));
-console.log(fruit[4]);
-// console.log(fruit.pop());
+// // fruit[fruit.length] = "pear";
 // console.log(fruit);
+// alert("Hello");
+// console.log(fruit.push("pear","pineapple","grape","mango"));
+// // fruit.push("pineapple");
+// // fruit.push("grape");
+// // fruit.push("mango");
+// console.log(fruit.shift());
+// console.log(fruit.unshift("strawberry"));
+// console.log(fruit.indexOf("pineapple"));
+// console.log(fruit[4]);
+// // console.log(fruit.pop());
+// // console.log(fruit);
+//
+// var sentence = "The quick brown fox jumps over the lazy dog";
+// console.log(sentence);
+// var words = sentence.split(" ");
+// for (var i = 0;i<words.length; i++) {
+//     // capitalize first letter
+//     var word = words[i];
+//     // var firstLetter = word.split()[0];
+//     var letters = word.split();
+//     var capitalFirstLetter = letters[0].toUpperCase();
+//     var capitalizedWord = "";
+//     capitalizedWord += capitalFirstLetter;
+//     for (var j=1;j<letters.length;j++) {
+//         capitalizedWord += letters[j];
+//     }
+//     words[i] = capitalizedWord;
+//
+// }
+// words.reverse();
+// sentence = words.join(" ");
+// console.log(sentence);
+
+
+var fruits1thru3 = fruit.slice(0,3);
+var fruits6thru8 = fruit.slice(5,8);
+console.log(fruits6thru8);
+console.log(fruit);
+
+
