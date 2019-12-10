@@ -37,10 +37,25 @@ var favoriteNumbers = [42, 77, 22, 17, 3.141592, 74, 100000000, 12];
 // 5 = Malue
 // 6 = Lily
 
-pets[pets.length] = "Lily";
-console.log(pets[pets.length-1]);
+// pets[pets.length] = "Lily";
+// console.log(pets[pets.length-1]);
+//
+// //=== For Each Loop For Array ===//
+// pets.forEach(function (pet, i, arr) {
+//     console.log(pet);
+// });
 
-//=== For Each Loop For Array ===//
-pets.forEach(function (pet, i, arr) {
-    console.log(pet);
-});
+var fruit = ["apple", "orange", "banana"];
+// fruit[fruit.length] = "pear";
+console.log(fruit);
+alert("Hello");
+console.log(fruit.push("pear","pineapple","grape","mango"));
+// fruit.push("pineapple");
+// fruit.push("grape");
+// fruit.push("mango");
+console.log(fruit.shift());
+console.log(fruit.unshift("strawberry"));
+console.log(fruit.indexOf("pineapple"));
+console.log(fruit[4]);
+// console.log(fruit.pop());
+// console.log(fruit);
