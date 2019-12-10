@@ -185,19 +185,44 @@
 
     // Write a js function that takes in another function.
 
-    function functionA(callbackFunction){
-        callbackFunction("It work's!");
-    }
-    functionA(function(message){
-        alert(message);
-    });
+    // function functionA(callbackFunction){
+    //     callbackFunction("It work's!");
+    // }
+    // functionA(function(message){
+    //     alert(message);
+    // });
+    //
+    // function functionOne(callbackFunction){
+    //     callbackFunction();
+    // }
+    // functionOne(function(){
+    //     alert("It work's!");
+    // });
 
-    function functionOne(callbackFunction){
-        callbackFunction();
-    }
-    functionOne(function(){
-        alert("It work's!");
-    });
+    // write a function called "contains" that receives an array and another param; and returns true if the param is found in the array. There is an easy way, but if you find it maybe try the loop way, too.
+
+    var contains = function(arr, param) {
+        return arr.includes(param);
+    };
+
+    // console.log(contains([1, 2, 3], 3));
+    // console.log(contains([1, 2, 3], 4));
+
+    //== OR ==//
+
+    var contains = function(arr, param) {
+        for (var i = 0; i<arr.length; i++) {
+            if (arr[i] === param) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    // console.log(contains([1, 2, 3], 3));
+    // console.log(contains([1, 2, 3], 4));
+    // console.log(contains(["cat","hat","bat"], 6));
+
 
 </script>
 
