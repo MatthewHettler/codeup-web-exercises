@@ -104,6 +104,7 @@ var cars = [
         }
     }
 ];
+
 car.report = function() {
     console.log(this.year + " " + this.make + " " + this.model);
 };
