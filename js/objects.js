@@ -173,15 +173,21 @@
      *   `showBookInfo` function.
      */
 
-    // function createBook (title, author) {
-    //     this.type = title;
-    //     this.author = author;
-    //     this.getDetails = function () {
-    //         return this.type + " written by " + this.author;
-    //     }
-    // }
-
-    // var book = new createBook ("Fiction", "Peter King");
-    // console.log((book.getDetails()));        // => Fiction written by Peter King
+    var createBook = function (title, authorFirstName, authorLastName){
+        var book = {};
+        book.title = title;
+        book.author = {};
+        book.author.firstName = authorFirstName;
+        book.author.lastName = authorLastName;
+        return book;
+    };
+    books.push(createBook("Leviathan", "Scott", "Westerfeld"));
+    var showBookInfo = function(book, i){
+        console.log("Book # " + (i + 1));
+        console.log("Title: " + book.title);
+        console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+        console.log("---");
+    };
+    books.forEach(showBookInfo);
 
 })();
