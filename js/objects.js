@@ -173,13 +173,13 @@
      *   `showBookInfo` function.
      */
 
-    function createBook (title, author) {
-        this.type = title;
-        this.author = author;
-        this.getDetails = function () {
-            return this.type + " written by " + this.author;
-        }
-    }
+    // function createBook (title, author) {
+    //     this.type = title;
+    //     this.author = author;
+    //     this.getDetails = function () {
+    //         return this.type + " written by " + this.author;
+    //     }
+    // }
 
     // var book = new createBook ("Fiction", "Peter King");
     // console.log((book.getDetails()));        // => Fiction written by Peter King
