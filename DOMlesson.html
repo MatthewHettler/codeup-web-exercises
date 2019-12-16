@@ -17,6 +17,7 @@
 <h3>Wish List</h3>
 <ul id="wishList">
 </ul>
+<button id="button">Click Me!</button>
 <a id="codeup" href="http://codeup.com">codeup</a>
 <script>
     console.log(document);
@@ -62,6 +63,13 @@
     // for (var i = 0;i<lis.length;i++){
     //     console.log(lis[i]);
     // }
+
+    var clicks = 0;
+    var button = document.getElementById("button");
+    button.addEventListener("click",function(){
+        clicks++;
+        alert("button was clicked " + clicks + " times.")})
+
 </script>
 </body>
 </html>
