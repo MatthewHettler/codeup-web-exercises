@@ -4,16 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <title>DOM: Query and Modify</title>
+    <style>
+
+        .blueText {
+            color:blue
+        }
+
+        .greyText {
+            color:grey
+        }
+
+    </style>
 </head>
 <body>
 
 <h1 id="main-header">Hello World!</h1>
 <ul>
-    <li data-dbid="1">Item 1</li>
-    <li data-dbid="2">Item 2</li>
-    <li data-dbid="3">Item 3</li>
-    <li data-dbid="4">Item 4</li>
-    <li data-dbid="5">Item 5</li>
+    <li data-dbid="1" class="odd">Item 1</li>
+    <li data-dbid="2" class="even">Item 2</li>
+    <li data-dbid="3" class="odd">Item 3</li>
+    <li data-dbid="4" class="even">Item 4</li>
+    <li data-dbid="5" class="odd">Item 5</li>
 </ul>
 <h2 id="sub-header">Hello Again.</h2>
 <p class="sub-paragraph">
@@ -34,23 +45,37 @@
         console.log(mainHeader);
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool"
-
+        mainHeader.innerHTML = "JavaScript is Cool";
 
         // TODO: Uncomment the next line and get the sub header element by id
-        // var subHeader = ;
+        var subHeader = document.getElementById("sub-header");
+        console.log(subHeader);
 
         // TODO: Set the text color of subHeader to blue
+            subHeader.setAttribute("class", "blueText");
 
         // TODO: Uncomment the next line and get all list items
-        // var listItems = ;
+        var listItems = document.getElementsByTagName("li");
+        console.log(listItems);
 
         // TODO: Set text color on every other list item to grey
+        var evens = document.getElementsByClassName("even");
+        for (var i = 0;i<evens.length;i++) {
+            evens[i].setAttribute("class", "even greyText");
+        }
+
         // TODO: Set text color of li with dbid = 1 to blue
+        var listItem1 = document.getElementsByTagName("li")[0];
+        listItem1.style.color = 'blue';
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
-        // var subParagraphs = ;
+        var subParagraphs = document.getElementsByClassName("sub-paragraph");
+        console.log(subParagraphs);
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+        var sParagraph = document.getElementsByClassName("sub-paragraph")[0];
+        sParagraph.innerHTML = "Mission Accomplished!";
+
     })();
 </script>
 </body>
