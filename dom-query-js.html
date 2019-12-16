@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DOM: Query and Modify</title>
+    <style>
+
+        .blueText {
+            color:blue
+        }
+
+        .greyText {
+            color:grey
+        }
+
+    </style>
+</head>
+<body>
+
+<h1 id="main-header">Hello World!</h1>
+<ul>
+    <li data-dbid="1" class="odd">Item 1</li>
+    <li data-dbid="2" class="even">Item 2</li>
+    <li data-dbid="3" class="odd">Item 3</li>
+    <li data-dbid="4" class="even">Item 4</li>
+    <li data-dbid="5" class="odd">Item 5</li>
+</ul>
+<h2 id="sub-header">Hello Again.</h2>
+<p class="sub-paragraph">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    aliquip ex ea commodo consequat. Duis aute irure dolor in
+    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+    culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<button id="btn1">Click Me!</button>
+<button id="btn2">Click Me!</button>
+<button id="btn3">Click Me!</button>
+<button id="btn4">Click Me!</button>
+<button id="btn5">Click Me!</button>
+
+<script>
+    (function() {
+        "use strict";
+        // TODO: Uncomment next line and get the main header element by id
+        var mainHeader = document.getElementById("main-header");
+        console.log(mainHeader);
+
+        // TODO: Set inner html of mainHeader to "JavaScript is Cool"
+        // mainHeader.innerHTML = "JavaScript is Cool";
+
+        // TODO: Uncomment the next line and get the sub header element by id
+        var subHeader = document.getElementById("sub-header");
+        console.log(subHeader);
+
+        // TODO: Set the text color of subHeader to blue
+        //     subHeader.setAttribute("class", "blueText");
+
+        // TODO: Uncomment the next line and get all list items
+        var listItems = document.getElementsByTagName("li");
+        console.log(listItems);
+
+        // TODO: Set text color on every other list item to grey
+        // var evens = document.getElementsByClassName("even");
+        // for (var i = 0;i<evens.length;i++) {
+        //     evens[i].setAttribute("class", "even greyText");
+        // }
+
+        // TODO: Set text color of li with dbid = 1 to blue
+        // var listItem1 = document.getElementsByTagName("li")[0];
+        // listItem1.setAttribute("class", "blueText");
+
+        // TODO: Uncomment the next line and get all elements with class name sub-paragraph
+        var subParagraphs = document.getElementsByClassName("sub-paragraph");
+        console.log(subParagraphs);
+
+        // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+        // var sParagraph = document.getElementsByClassName("sub-paragraph")[0];
+        // sParagraph.innerHTML = "Mission Accomplished!";
+
+
+
+        // TODO: Button 1
+        var buttonClick1 = function(){
+            mainHeader.innerHTML = "JavaScript is Cool";
+        };
+        var button1 = document.getElementById("btn1");
+        button1.addEventListener("click", buttonClick1);
+        //=== Added Remove Event Listener for Experimentation ===//
+        // button2.addEventListener("click", function(){
+        //     button1.removeEventListener("click", buttonClick);
+        // });
+
+        // TODO: Button 2
+        var buttonClick2 = function(){
+            subHeader.setAttribute("class", "blueText");
+        };
+        var button2 = document.getElementById("btn2");
+        button2.addEventListener("click", buttonClick2);
+
+        // TODO: Button 3
+        var buttonClick3 = function(){
+            var evens = document.getElementsByClassName("even");
+            for (var i = 0;i<evens.length;i++) {
+                evens[i].setAttribute("class", "even greyText");
+            }
+        };
+        var button3 = document.getElementById("btn3");
+        button3.addEventListener("click", buttonClick3);
+
+        // TODO: Button 4
+        var buttonClick4 = function(){
+            var listItem1 = document.getElementsByTagName("li")[0];
+            listItem1.setAttribute("class", "blueText");
+        };
+        var button4 = document.getElementById("btn4");
+        button4.addEventListener("click", buttonClick4);
+
+        // TODO: Button 5
+        var buttonClick5 = function(){
+            var sParagraph = document.getElementsByClassName("sub-paragraph")[0];
+            sParagraph.innerHTML = "Mission Accomplished!";
+        };
+        var button5 = document.getElementById("btn5");
+        button5.addEventListener("click", buttonClick5);
+
+
+    })();
+</script>
+</body>
+</html>
+
