@@ -32,30 +32,144 @@
     mapboxgl.accessToken = mapboxToken;
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
+        style: 'mapbox://styles/mapbox/satellite-streets-v11',
         zoom: 10,
         center: [-98.4916, 29.4252]
     });
+
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
 //==================================================================================================//
+    // Created an array
+    var restaurantInfo = [
+        {address: "8822 Wurzbach Rd, San Antonio, TX 78240",
+        popupHTML: "<h1>Golden Wok</h1>" +
+                   "<b>Description:</b> <em>Dim sum, a stir-fry bar & daily lunch specials are among the draws at this casual Pan-Asian eatery.</em>" +
+                   "<br>" +
+                   "<b>Address:</b> 8822 Wurzbach Rd, San Antonio, TX 78240" +
+                   "<br>" +
+                   "<b>Phone:</b> (210) 615-8282" +
+                   "<br>" +
+                   "<b>Website:</b> <a href=\"https://www.goldenwoksa.com\">https://www.goldenwoksa.com </a>"
+        },
+
+        {address: "7363 W Loop 1604 N, San Antonio, TX 78254",
+            popupHTML: "<h1>Burger Boy</h1>" +
+                "<b>Description:</b> <em>Fast-food mainstay serving classic burgers, fries & shakes in a no-frills setting with a drive-thru.</em>" +
+                "<br>" +
+                "<b>Address:</b> 7363 W Loop 1604 N, San Antonio, TX 78254" +
+                "<br>" +
+                "<b>Phone:</b> (210) 236-8662" +
+                "<br>" +
+                "<b>Website:</b> <a href=\"https://www.burgerboysa.com/\">https://www.burgerboysa.com/ </a>"
+        },
+
+        {address: "15814 I-10, San Antonio, TX 78257",
+            popupHTML: "<h1>Olive Garden</h1>" +
+                "<b>Description:</b> <em>Lively, family-friendly chain featuring Italian standards such as pastas & salads, with a full bar.</em>" +
+                "<br>" +
+                "<b>Address:</b> 15814 I-10, San Antonio, TX 78257" +
+                "<br>" +
+                "<b>Phone:</b> (210) 561-2795" +
+                "<br>" +
+                "<b>Website:</b> <a href=\"https://www.olivegarden.com/home\">https://www.olivegarden.com/home </a>"
+        }
+    ];
+
+    // created a forEach loop
+    function placeMarkerAndPopup(info, token, map) {
+        info.forEach(function(info) {
+            geocode(info.address, token).then(function (coordinates) {
+                var popup = new mapboxgl.Popup()
+                    .setHTML(info.popupHTML);
+                var markerOptions = {
+                    color: "red"
+                };
+                var marker = new mapboxgl.Marker(markerOptions)
+                    .setLngLat(coordinates)
+                    .addTo(map)
+                    .setPopup(popup);
+                marker();
+            });
+        })
+    }
+
+    placeMarkerAndPopup(restaurantInfo, mapboxToken, map);
+
     //========= Geo Code =========//
-    geocode("San Antonio, TX", mapboxToken).then(function(result){ console.log(result)
-        // recenter the map
-        // add a marker
-        var marker = new mapboxgl.Marker()
-            .setLngLat(result)
-            .addTo(map);
+    //== Golden Wok ==//
+    // geocode("8822 Wurzbach Rd, San Antonio, TX 78240", mapboxToken).then(function(result){ console.log(result)
+    //
+    //     // create the popup
+    //     var goldenWokPopup = new mapboxgl.Popup({ offset: 25 })
+    //         .setHTML('<h1>Golden Wok</h1>' +
+    //                 '<br>' +
+    //                 '<b>Address:</b> 8822 Wurzbach Rd, San Antonio, TX 78240' +
+    //                 '<br>' +
+    //                 '<b>Phone:</b> (210) 615-8282');
+    //
+    //     // added color to the marker
+    //     var markerOptions = {
+    //         color: "red"
+    //     };
+    //
+    //     // create the marker
+    //             var marker = new mapboxgl.Marker(markerOptions)
+    //                 .setLngLat(result)
+    //                 .setPopup(goldenWokPopup) // sets a popup on this marker
+    //                 .addTo(map);
+    //
+    //             marker();
+    //
+    // });
 
-        map.setCenter(result);
-        map.setZoom(10);
-    });
+    //== Burger Boy ==//
+    // geocode("7363 W Loop 1604 N, San Antonio, TX 78254", mapboxToken).then(function(result){ console.log(result)
+    //
+    //     // create the popup
+    //     var burgerBoyPopup = new mapboxgl.Popup({ offset: 25 })
+    //         .setHTML('<h1>Burger Boy</h1>' +
+    //             '<br>' +
+    //             '<b>Address:</b> 7363 W Loop 1604 N, San Antonio, TX 78254' +
+    //             '<br>' +
+    //             '<b>Phone:</b> (210) 236-8662');
+    //
+    //     // create the marker
+    //     var marker = new mapboxgl.Marker()
+    //         .setLngLat(result)
+    //         .setPopup(burgerBoyPopup) // sets a popup on this marker
+    //         .addTo(map);
+    //
+    //     marker();
+    //
+    // });
 
-
-
-
+    //== Olive Garden ==//
+    // geocode("15814 I-10, San Antonio, TX 78257", mapboxToken).then(function(result){ console.log(result)
+    //
+    //     // create the popup
+    //     var oliveGardenPopup = new mapboxgl.Popup({ offset: 25 })
+    //         .setHTML('<h1>Olive Garden</h1>' +
+    //             '<br>' +
+    //             '<b>Address:</b> 15814 I-10, San Antonio, TX 78257' +
+    //             '<br>' +
+    //             '<b>Phone:</b> (210) 561-2795';
+    //
+    //     // added color to the marker
+    //     var markerOptions = {
+    //         color: "green"
+    //     };
+    //
+    //     // create the marker
+    //     var marker = new mapboxgl.Marker(markerOptions)
+    //         .setLngLat(result)
+    //         .setPopup(oliveGardenPopup) // sets a popup on this marker
+    //         .addTo(map);
+    //
+    //     marker();
+    //
+    // });
     //==================================================================================================//
-
-
-
 
 </script>
 </body>
