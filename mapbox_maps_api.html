@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Mapbox Map</title>
+    <!-- Mapbox CSS -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+    <!-- Custom CSS -->
+    <style>
+        #map {
+            /* the width and height may be set to any size */
+            width: 100%;
+            height: 700px;
+        }
+    </style>
+</head>
+<body>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+<link
+        rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+        type="text/css"
+/>
+
+<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+<h1>My Exercise Mapbox Map!</h1>
+
+<!-- The HTML element that serves as the Mapbox container -->
+<div id='map'></div>
+
+<!-- Mapbox JS -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src="js/keys.js"></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
+
+<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+<div id="map"></div>
+
+<!-- Custom JS -->
+<script>
+
+    //=========== Map ============//
+    mapboxgl.accessToken = mapboxToken;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/satellite-streets-v11',
+        zoom: 10,
+        center: [-98.4916, 29.4252]
+    });
+
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
+
+
+//==================================================================================================//
+    // Created an array
+    var restaurantInfo = [
+        {address: "8822 Wurzbach Rd, San Antonio, TX 78240",
+        popupHTML: "<h1>Golden Wok</h1>" +
+                   "<b>Description:</b> <em>Dim sum, a stir-fry bar & daily lunch specials are among the draws at this casual Pan-Asian eatery.</em>" +
+                   "<br>" +
+                   "<b>Address:</b> 8822 Wurzbach Rd, San Antonio, TX 78240" +
+                   "<br>" +
+                   "<b>Phone:</b> (210) 615-8282" +
+                   "<br>" +
+                   "<b>Website:</b> <a href=\"https://www.goldenwoksa.com\">https://www.goldenwoksa.com </a>"
+        },
+
+        {address: "7363 W Loop 1604 N, San Antonio, TX 78254",
+            popupHTML: "<h1>Burger Boy</h1>" +
+                "<b>Description:</b> <em>Fast-food mainstay serving classic burgers, fries & shakes in a no-frills setting with a drive-thru.</em>" +
+                "<br>" +
+                "<b>Address:</b> 7363 W Loop 1604 N, San Antonio, TX 78254" +
+                "<br>" +
+                "<b>Phone:</b> (210) 236-8662" +
+                "<br>" +
+                "<b>Website:</b> <a href=\"https://www.burgerboysa.com/\">https://www.burgerboysa.com/ </a>"
+        },
+
+        {address: "15814 I-10, San Antonio, TX 78257",
+            popupHTML: "<h1>Olive Garden</h1>" +
+                "<b>Description:</b> <em>Lively, family-friendly chain featuring Italian standards such as pastas & salads, with a full bar.</em>" +
+                "<br>" +
+                "<b>Address:</b> 15814 I-10, San Antonio, TX 78257" +
+                "<br>" +
+                "<b>Phone:</b> (210) 561-2795" +
+                "<br>" +
+                "<b>Website:</b> <a href=\"https://www.olivegarden.com/home\">https://www.olivegarden.com/home </a>"
+        }
+    ];
+
+    // created a forEach loop
+    function placeMarkerAndPopup(info, token, map) {
+        info.forEach(function(info) {
+            geocode(info.address, token).then(function (coordinates) {
+                var popup = new mapboxgl.Popup()
+                    .setHTML(info.popupHTML);
+                var markerOptions = {
+                    color: "#3734EB"
+                };
+                var marker = new mapboxgl.Marker(markerOptions)
+                    .setLngLat(coordinates)
+                    .addTo(map)
+                    .setPopup(popup);
+                marker();
+            });
+        })
+    }
+
+    placeMarkerAndPopup(restaurantInfo, mapboxToken, map);
+
+    var geocoder = new MapboxGeocoder({
+        accessToken: mapboxToken,
+        marker: {
+            color: "#3734EB"
+        },
+        mapboxgl: mapboxgl
+    });
+    map.addControl(geocoder);
+
+    //================================================================================================================//
+
+    //========= Geo Code =========//
+    //== Golden Wok ==//
+    // geocode("8822 Wurzbach Rd, San Antonio, TX 78240", mapboxToken).then(function(result){ console.log(result)
+    //
+    //     // create the popup
+    //     var goldenWokPopup = new mapboxgl.Popup({ offset: 25 })
+    //         .setHTML('<h1>Golden Wok</h1>' +
+    //                 '<br>' +
+    //                 '<b>Address:</b> 8822 Wurzbach Rd, San Antonio, TX 78240' +
+    //                 '<br>' +
+    //                 '<b>Phone:</b> (210) 615-8282');
+    //
+    //     // added color to the marker
+    //     var markerOptions = {
+    //         color: "red"
+    //     };
+    //
+    //     // create the marker
+    //             var marker = new mapboxgl.Marker(markerOptions)
+    //                 .setLngLat(result)
+    //                 .setPopup(goldenWokPopup) // sets a popup on this marker
+    //                 .addTo(map);
+    //
+    //             marker();
+    //
+    // });
+
+    //== Burger Boy ==//
+    // geocode("7363 W Loop 1604 N, San Antonio, TX 78254", mapboxToken).then(function(result){ console.log(result)
+    //
+    //     // create the popup
+    //     var burgerBoyPopup = new mapboxgl.Popup({ offset: 25 })
+    //         .setHTML('<h1>Burger Boy</h1>' +
+    //             '<br>' +
+    //             '<b>Address:</b> 7363 W Loop 1604 N, San Antonio, TX 78254' +
+    //             '<br>' +
+    //             '<b>Phone:</b> (210) 236-8662');
+    //
+    //     // create the marker
+    //     var marker = new mapboxgl.Marker()
+    //         .setLngLat(result)
+    //         .setPopup(burgerBoyPopup) // sets a popup on this marker
+    //         .addTo(map);
+    //
+    //     marker();
+    //
+    // });
+
+    //== Olive Garden ==//
+    // geocode("15814 I-10, San Antonio, TX 78257", mapboxToken).then(function(result){ console.log(result)
+    //
+    //     // create the popup
+    //     var oliveGardenPopup = new mapboxgl.Popup({ offset: 25 })
+    //         .setHTML('<h1>Olive Garden</h1>' +
+    //             '<br>' +
+    //             '<b>Address:</b> 15814 I-10, San Antonio, TX 78257' +
+    //             '<br>' +
+    //             '<b>Phone:</b> (210) 561-2795';
+    //
+    //     // added color to the marker
+    //     var markerOptions = {
+    //         color: "green"
+    //     };
+    //
+    //     // create the marker
+    //     var marker = new mapboxgl.Marker(markerOptions)
+    //         .setLngLat(result)
+    //         .setPopup(oliveGardenPopup) // sets a popup on this marker
+    //         .addTo(map);
+    //
+    //     marker();
+    //
+    // });
+    //==================================================================================================//
+
+</script>
+</body>
+</html>
