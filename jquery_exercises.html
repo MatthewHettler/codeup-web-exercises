@@ -20,7 +20,7 @@
             border: 1px red solid;
         }
         .font-size {
-            font-size: 20px;
+            font-size: 18px;
         }
         .highlight {
             background-color: greenyellow;
@@ -96,11 +96,31 @@
             //     });
 
             // TODO: Multiple Selectors Exercise:
-                $("li,p,h1").addClass("highlight");
-                // $("p").addClass("highlight");
-                $("h1").addClass("highlight").click(function(){
-                    alert($("h1").html());
+            //     $("li,p,h1").addClass("highlight");
+            //     // $("p").addClass("highlight");
+            //     $("h1").addClass("highlight").click(function(){
+            //         alert($("h1").html());
+            //     });
+
+            // TODO: Mouse Events:
+                $("h1").click(function(){
+                    $("h1").addClass("redBackground")
                 });
+
+                $("p").dblclick(function(){
+                    $("p").addClass("font-size")
+                });
+
+                $("li").hover(
+                    function() {
+                        $(this).css('color', '#FF0000');
+                    },
+                    function() {
+                        $(this).css('color', '#000000');
+                    }
+                );
+
+
 
         })
     })();
