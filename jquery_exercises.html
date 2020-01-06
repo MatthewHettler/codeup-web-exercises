@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Exercises</title>
+    <style>
+        .important{
+            color: green;
+        }
+        .cyan {
+            background-color: cyan;
+        }
+    </style>
+</head>
+<body>
+<h1>Happy New Year!</h1>
+<h3>New Year Resolutions</h3>
+<ul id="resolutions">
+    <li>Gain Weight</li>
+    <li class="important">Get an awesome career started!</li>
+    <li class="important">Spend more time with awesome people!</li>
+</ul>
+<form name="resForm" action="">
+    <div>
+        <label for="goal">What do you want to do this year?</label>
+        <input id="goal" name="goal" type="text">
+    </div>
+</form>
+<button id="button" class="cyan">Click Me!</button>
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script>
+
+    (function () {
+        "use strict";
+        $(document).ready(function () {
+            //our jQuery code goes here
+            // alert("Look, we are using jQuery!");
+
+            $("button").click(function() {
+                alert("You clicked the button.")
+            });
+
+           //  var listItems = document.getElementsByTagName("li");
+           //
+           // for (var i = 0;i<listItems.length;i++){
+           //     listItems[i].setAttribute("class", "purple");
+           // }
+
+           $(".important").addClass("greenText");
+
+
+            $("li").mouseover(function(){
+                $("li").fadeTo("slow", 0.25);
+            });
+
+        })
+    })();
+
+</script>
+</body>
+</html>
