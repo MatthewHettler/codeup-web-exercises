@@ -98,9 +98,9 @@
             // TODO: Multiple Selectors Exercise:
                 $("li,p,h1").addClass("highlight");
                 // $("p").addClass("highlight");
-                // $("h1").addClass("highlight").click(function(){
-                //     alert("h1 Content: Happy New Year!")
-                // });
+                $("h1").addClass("highlight").click(function(){
+                    alert($("h1").html());
+                });
 
         })
     })();
