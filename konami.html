@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Konami Exercise</title>
 </head>
 <body>
+<h1>Konami Exercise!</h1>
+<h3><u>Cheat Code</u></h3>
+<p><em><b>Add 30 Extra Lives</b></em>:</p> <img src="img/800px-Konami_Code.svg_%20(1).png" alt="description" height="48" width="500" />
+<p><i>*Reminder: don't forget to hit enter after inputting the code!</i></p>
 
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script>
+
+    function konami(fn) {
+        var input = "";
+        var pattern = "3838404037393739666513";
+        $(document).keydown(function(e) {
+            input += e.keyCode;
+            if (input.indexOf(pattern) !== -1) {
+                fn();
+                input = "";
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        konami(function() {
+            alert("You have added 30 lives!");
+        });
+    });
+
+</script>
 </body>
 </html>
