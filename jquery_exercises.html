@@ -4,11 +4,26 @@
     <meta charset="UTF-8">
     <title>jQuery Exercises</title>
     <style>
-        .important{
-            color: green;
+        .redBackground {
+            background-color:red
+        }
+        .greenText {
+            color:green
+        }
+        .purple {
+            background:purple;
         }
         .cyan {
-            background-color: cyan;
+            color:cyan;
+        }
+        .outline {
+            border: 1px red solid;
+        }
+        .font-size {
+            font-size: 20px;
+        }
+        .highlight {
+            background-color: greenyellow;
         }
     </style>
 </head>
@@ -16,47 +31,79 @@
 <h1>Happy New Year!</h1>
 <h3>New Year Resolutions</h3>
 <ul id="resolutions">
-    <li>Gain Weight</li>
-    <li class="important">Get an awesome career started!</li>
-    <li class="important">Spend more time with awesome people!</li>
+    <li class="odd codeup">Gain Weight</li>
+    <li class="important codeup">Get an awesome career started!</li>
+    <li class="odd important codeup">Spend more time with awesome people</li>
 </ul>
+<p id="pGraph"><b>Paragraph Text:</b><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium eos inventore non quis unde. A aliquam aspernatur blanditiis esse ipsum nulla qui. Alias ea eveniet in iste vitae voluptates.</p>
 <form name="resForm" action="">
     <div>
         <label for="goal">What do you want to do this year?</label>
         <input id="goal" name="goal" type="text">
     </div>
+
 </form>
 <button id="button" class="cyan">Click Me!</button>
 
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script>
-
     (function () {
         "use strict";
         $(document).ready(function () {
             //our jQuery code goes here
             // alert("Look, we are using jQuery!");
+            // document.getElementById("button").addEventListener("click", function() {
+            //     alert("You clicked the button.")
+            // });
+            // $("#button").click(function() {
+            //     alert("You clicked the button.")
+            // });
+            // var listItems = document.getElementsByTagName("li");
+            // for (var i = 0;i<listItems.length;i++) {
+            //     listItems[i].setAttribute("class", "purple");
+            // }
 
-            $("button").click(function() {
-                alert("You clicked the button.")
-            });
+            // $(".odd").addClass("purple");
+            //
+            // $(".important").addClass("greenText");
+            //
+            // $("*").addClass("outline");
+            //
+            // $("li").click(function(){
+            //     $("li").fadeTo("slow", 0.25);
+            // });
+            //
 
-           //  var listItems = document.getElementsByTagName("li");
-           //
-           // for (var i = 0;i<listItems.length;i++){
-           //     listItems[i].setAttribute("class", "purple");
-           // }
+            // TODO: Id Selectors Exercises:
+            // $("#pGraph").click(function() {
+            //     alert("The paragraph contents are: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium eos inventore non quis unde. A aliquam aspernatur blanditiis esse ipsum nulla qui. Alias ea eveniet in iste vitae voluptates.")
+            // });
+            //
+            // $("#resolutions").click(function(){
+            //     alert("New year Resolutions: Gain weight, get an awesome career started, and spend more time with awesome people!")
+            // });
 
-           $(".important").addClass("greenText");
+            // TODO: Class Selectors Exercises:
+            // $(".codeup").addClass("outline");
 
+            // TODO: Element Selectors Exercises:
+            //     $("li").addClass("font-size");
+            //     $("li").addClass("highlight");
+            //     $("p").addClass("highlight");
+            //     $("h1").addClass("highlight");
+            //     $("h1").click(function(){
+            //         alert("h1 Content: Happy New Year!")
+            //     });
 
-            $("li").mouseover(function(){
-                $("li").fadeTo("slow", 0.25);
-            });
+            // TODO: Multiple Selectors Exercise:
+                $("li,p,h1").addClass("highlight");
+                // $("p").addClass("highlight");
+                // $("h1").addClass("highlight").click(function(){
+                //     alert("h1 Content: Happy New Year!")
+                // });
 
         })
     })();
-
 </script>
 </body>
 </html>
