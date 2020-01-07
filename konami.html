@@ -2,9 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <title>Konami Exercise</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        .h1style{
+            text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18, 2px 2px 0px rgba(25,201,206,0);
+            text-align: center;
+        }
+
+        .divStyle {
+            background-color: #FFFFFF;
+            opacity: 80%;
+            width: 40%;
+            position: absolute;
+            top: 50%;
+            left:34%;
+            margin-top: -50px;
+            margin-left: -50px;
+            text-align: center;
+            -webkit-box-shadow: 5px 5px 15px 5px #000000;
+            box-shadow: 5px 5px 15px 5px #000000;
+        }
+
+        .whiteText {
+            color: #000000;
+            background: #FFFFFF;
+            text-shadow: 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 6px 5px 1px #919191;
+        }
+
+        html {
+            font-family: 'Press Start 2P', cursive;
+            background: url(https://i.imgur.com/pzLmQHi.gif) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+
+        #theDiv {
+            position: absolute;
+            left: 28%;
+            z-index: 1;
+        }
+
+    </style>
+
 </head>
-<body>
+
+<body class="bg">
+
+<audio id="zelda">
+    <source src="audio/Zelda%20-%20Ocarina%20of%20Time%20-%20Treasure%20Chest%201%20(mp3cut.net).mp3" type="audio/mp3">
+</audio>
+<h1 class="h1style">Konami Exercise!</h1>
+<div id="theDiv"></div>
+<div class="divStyle">
+    <h3 class="whiteText">[The Konami Code]</h3>
+    <p class="whiteText"><em><b>Add 30 Extra Lives</b></em>:</p> <img src="img/800px-Konami_Code.svg_%20(1).png" alt="description" height="48" width="500" />
+    <p class="whiteText"><i>*Reminder: don't forget to hit "enter" after inputting the code!</i></p>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+
+<script>
+
+    function konami(fn) {
+        var input = "";
+        var pattern = "3838404037393739666513";
+        $(document).keydown(function(e) {
+            input += e.keyCode;
+            if (input.indexOf(pattern) !== -1) {
+                fn();
+                input = "";
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        konami(function() {
+            $('audio#zelda')[0].play();
+            setTimeout(function(){alert("You have added 30 lives!")},500);
+            $('#theDiv').prepend('<img id="zeldaChestGif" src="img/zeldachest.gif" alt="" />').delay(5000).fadeOut('slow')
+        });
+    });
+
+</script>
 
 </body>
 </html>
