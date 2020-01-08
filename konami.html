@@ -65,14 +65,24 @@
         #theDiv {
             position: absolute;
             left: 28%;
-            z-index: 1;
+            z-index: 3;
         }
 
-        .konamiGifStyle {
+        img.konamiGifStyle {
             position: absolute;
-            top: 8%;
-            left: 38%;
+            top: 15%;
+            left: 43.4%;
+            width: 175px;
+            height: 150px;
             z-index: 2;
+        }
+
+        img.continueGifStyle {
+            position: absolute;
+            top: 15%;
+            left: 43.4%;
+            width: 175px;
+            height: 150px;
         }
 
     </style>
@@ -89,7 +99,8 @@
 <div>
     <button id="insertCoin" class="buttonStyle"><b>Coin Slot</b></button>
 </div>
-<div id="konamiLogoToggle" class="konamiGifStyle"><img src="img/konamilogo.gif" alt=""/></div>
+<img id="konamiLogoToggle" class="konamiGifStyle" src="img/konamilogo.gif" alt=""/>
+<img id="continueGifToggle" class="continueGifStyle" src="img/continue.gif" alt=""/>
 <div id="divToggle" class="divStyle">
     <h3 class="whiteText">[The Konami Code]</h3>
     <p class="whiteText"><em><b>Add 30 Extra Lives</b></em>:</p> <img src="img/800px-Konami_Code.svg_%20(1).png" alt="description" height="24" width="250" />
@@ -122,13 +133,13 @@
 
     //=== Lab Work ===//
 
-    //--- This will make the button hide/show the konami gif and the div set to id=buttonToggle ---//
+    //--- This will make the button show the konami gif, continue gif, and the div set to id=buttonToggle ---//
     $(function(){
-        $("#konamiLogoToggle, #divToggle").hide();
+        $("#konamiLogoToggle, #divToggle, #continueGifToggle").hide();
         $("button").on("click", function(){
-            $("#konamiLogoToggle, #divToggle").toggle();
             $('#konamiLogoToggle').fadeIn(1500).delay(3500).fadeOut(1500);
-
+            $('#divToggle').delay(5500).fadeIn(1500).delay(20000).fadeOut(1500);
+            $('#continueGifToggle').delay(27000).fadeIn(1500).delay(10000).fadeOut(1500).hide();
         });
     });
 
