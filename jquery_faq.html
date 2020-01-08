@@ -7,9 +7,40 @@
         .invisible {
             visibility: hidden;
         }
+
+        .signUp {
+            background-color: #FFFFFF;
+            font-size: 10px;
+            opacity: 100%;
+            height: 18%;
+            width: 21%;
+            position: absolute;
+            top: 24%;
+            left:43.5%;
+            margin-top: -50px;
+            margin-left: -50px;
+            text-align: center;
+            -webkit-box-shadow: 5px 5px 15px 5px #000000;
+            box-shadow: 5px 5px 15px 5px #000000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
     </style>
 </head>
 <body>
+
+<!-------------------------------------------- TODO: Effects Exercises --------------------------------------------->
+
+<h1 id="h1Hide">Would you like to sign up for our newsletter?</h1>
+<span>x</span>
+
+<div id="alert" class="signUp">
+    <h2>Would you like to register for the site?</h2>
+</div>
+
+<!-------------------------------------------- TODO: Attributes Exercises --------------------------------------------->
 
 <dl>
     <dt>Lorem Park</dt>
@@ -43,22 +74,100 @@
     <dd class="invisible">Yogi lives there.</dd>
 </dl>
 
-<button id="styler">Click to change some things!</button>
+<!-------------------------------------------- TODO: Traversing Exercises --------------------------------------------->
+<h1>National Parks</h1>
+<h3>Arches</h3>
+<ul class="facts">
+    <li>Arches National Park covers a total area of 76,359 acres.</li>
+    <li>Arches was made a national park on November 12, 1971.</li>
+    <li>The entrance fee for Arches is $30 per vehicle per week.</li>
+    <li>Arches National Park lies in the Mountain time zone.</li>
+</ul>
+<h3>Denali</h3>
+<ul class="facts">
+    <li>Denali National Park covers a total area of 6,075,106 acres.</li>
+    <li>Denali was made a national park on February 26, 1917.</li>
+    <li>The entrance fee for Denali is $15 per person per week.</li>
+    <li>Denali National Park lies in the Alaska time zone.</li>
+</ul>
+<h3>Everglades</h3>
+<ul class="facts">
+    <li>Everglades National Park covers a total area of 1,507,850 acres.</li>
+    <li>Everglades was made a national park on May 30, 1934.</li>
+    <li>The entrance fee for Everglades is $25 per vehicle per week.</li>
+    <li>Everglades National Park lies in the Eastern time zone.</li>
+</ul>
 
-<script
-        src="https://code.jquery.com/jquery-3.4.1.slim.js"
-        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
-        crossorigin="anonymous">
-</script>
+<button id="styler2">Click to change some things!</button>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<!-------------------------------------------- TODO: Attributes Exercises --------------------------------------------->
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 
 <script>
     $('#styler').click(function(e) {
         e.preventDefault();
-        $("dd").toggleClass("invisible");
+        $('ul').children().last().css('background-color', '#FF0');
     });
+
+    $('#styler').click(function(e) {
+        e.preventDefault();
+        $('ul').children().last().each(function(index) {
+            if (index[3]) {
+                $(this).css('background-color', '#FF0');
+            }
+        });
+    });
+
     $("dt").click(function() {
         $(this).css("background-color", "yellow");
-    })
+    });
+
+    //========================================= TODO: Traversing Exercises ===========================================//
+
+    // TODO: Create a button that, when clicked, makes the last li in each ul have a yellow background.
+
+        $('#styler2').click(function(e) {
+            e.preventDefault();
+            $('ul').each(function () {
+                $(this).children('li').last().css('background-color', '#FF0');
+            });
+        });
+
+    //TODO: When any h3 is clicked, the lis underneath it should be bolded. Use font-weight: bold to achieve this.
+
+        $('h3').click(function() {
+            $(this).next('ul').children('li').css('font-weight', 'bold');
+        });
+
+    //TODO: When any list item is clicked, first li of the parent ul should have a font color of blue.
+
+        $('li').click(function() {
+            $(this).parent('ul').children('li').first('li').css('color', 'blue');
+        });
+
+    //================================================================================================================//
+
+    //========================================= TODO: Effects Exercises ===========================================//
+
+        $("span").on("click", function(){
+            $("#h1Hide").hide();
+        });
+
+    // TODO: The uls next to each h3 that contain facts about each park should start out hidden, and when the corresponding h3 is clicked, the display of the ul should be toggled with a sliding effect.
+
+        $(".facts").hide();
+        $('h3').click(function() {
+            $(this).next('ul').slideToggle();
+        });
+
+    // TODO: After the user has been on the page for 8 seconds, an h2 should fade in that asks the user to register for the site.
+
+        $("#alert").hide();
+        $('#alert').delay(8000).fadeIn(1500);
+
 </script>
 
 </body>

@@ -15,16 +15,36 @@
 
         .divStyle {
             background-color: #FFFFFF;
-            opacity: 80%;
-            width: 40%;
+            font-size: 10px;
+            opacity: 100%;
+            height: 18%;
+            width: 21%;
             position: absolute;
-            top: 50%;
-            left:34%;
+            top: 24%;
+            left:43.5%;
             margin-top: -50px;
             margin-left: -50px;
             text-align: center;
             -webkit-box-shadow: 5px 5px 15px 5px #000000;
             box-shadow: 5px 5px 15px 5px #000000;
+        }
+
+        .buttonStyle {
+            opacity: 80%;
+            position: absolute;
+            height: 35px;
+            width: 46px;
+            top: 72.9%;
+            left: 55.5%;
+            margin-top: -50px;
+            margin-left: -50px;
+            -webkit-box-shadow: 5px 5px 15px 5px #000000;
+            box-shadow: 5px 5px 15px 5px #000000;
+            background-color: #FE8500;
+            color: #000000;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 8px;
+            text-align: center;
         }
 
         .whiteText {
@@ -48,6 +68,13 @@
             z-index: 1;
         }
 
+        .konamiGifStyle {
+            position: absolute;
+            top: 8%;
+            left: 38%;
+            z-index: 2;
+        }
+
     </style>
 
 </head>
@@ -59,10 +86,14 @@
 </audio>
 <h1 class="h1style">Konami Exercise!</h1>
 <div id="theDiv"></div>
-<div class="divStyle">
+<div>
+    <button id="insertCoin" class="buttonStyle"><b>Coin Slot</b></button>
+</div>
+<div id="konamiLogoToggle" class="konamiGifStyle"><img src="img/konamilogo.gif" alt=""/></div>
+<div id="divToggle" class="divStyle">
     <h3 class="whiteText">[The Konami Code]</h3>
-    <p class="whiteText"><em><b>Add 30 Extra Lives</b></em>:</p> <img src="img/800px-Konami_Code.svg_%20(1).png" alt="description" height="48" width="500" />
-    <p class="whiteText"><i>*Reminder: don't forget to hit "enter" after inputting the code!</i></p>
+    <p class="whiteText"><em><b>Add 30 Extra Lives</b></em>:</p> <img src="img/800px-Konami_Code.svg_%20(1).png" alt="description" height="24" width="250" />
+    <p class="whiteText"><i>*Reminder: hit "enter" after inputting the code!</i></p>
 </div>
 
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
@@ -86,6 +117,18 @@
             $('audio#zelda')[0].play();
             setTimeout(function(){alert("You have added 30 lives!")},500);
             $('#theDiv').prepend('<img id="zeldaChestGif" src="img/zeldachest.gif" alt="" />').delay(5000).fadeOut('slow')
+        });
+    });
+
+    //=== Lab Work ===//
+
+    //--- This will make the button hide/show the konami gif and the div set to id=buttonToggle ---//
+    $(function(){
+        $("#konamiLogoToggle, #divToggle").hide();
+        $("button").on("click", function(){
+            $("#konamiLogoToggle, #divToggle").toggle();
+            $('#konamiLogoToggle').fadeIn(1500).delay(3500).fadeOut(1500);
+
         });
     });
 
