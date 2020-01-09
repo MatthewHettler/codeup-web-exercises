@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Store</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+
+<style>
+    .tableStyle {
+        border-radius: 5px;
+        width: 50%;
+        margin: 0px auto;
+        float: none;
+    }
+    .h1Style {
+        color: #000000;
+        background: #FFFFFF;
+        text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
+        text-align: center;
+    }
+    .buttonStyle {
+        width: 10%;
+        margin-left: 45%;
+        margin-right: 50%
+    }
+    table tr th {
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+
+<body class="bg-primary">
+
+<h1 class="h1Style shadow-lg p-3 mb-5 bg-white">My Tool Store</h1>
+
+<table id="products" class="shadow-lg p-3 mb-5 bg-white rounded tableStyle">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Categories</th>
+    </tr>
+    </thead>
+    <tbody id="insertProducts"></tbody>
+</table>
+<br>
+<button id="refreshButton" class="buttonStyle">Refresh</button>
+
+<!-- Your custom JS goes here -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+    (function() {
+        "use strict";
+        // TODO: Create an ajax GET request for /data/inventory.json
+
+        var ajax = $.ajax("data/inventory.json")
+
+
+        // TODO: Take the data from inventory.json and append it to the products table
+        //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+        //             its contents and fields
+        //       HINT: You will want to target #insertProducts for your new HTML elements
+
+        // logs the json object
+        .done(function(ajax) {
+                console.log(ajax);
+            });
+
+        // transfers the json data to html
+        var table = $('#insertProducts');
+
+        ajax.done(function (data) {
+            data.forEach(function (item) {
+                table.append("<tr>" +
+                    "<th>" + item.title + "</th>" +
+                    "<th>" + item.quantity + "</th>" +
+                    "<th>" + item.price + "</th>" +
+                    "<th>" + item.categories + "</th>"
+                    + "</tr>")
+            });
+
+        });
+
+        // function for refresh button to load json data without refreshing the page.
+
+        $(function() {
+            $("#refreshButton").on("click", function() {
+                $("body").load('#insertProducts');
+                return false;
+            })
+        })
+
+    })();
+
+</script>
+
+</body>
+</html>

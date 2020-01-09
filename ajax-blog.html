@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Blog Exercise</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body class="container bg-secondary">
+<div id="posts" class="shadow p-3 mb-5 bg-info rounded"></div>
+<button type="button" id="refreshButton" class="btn btn-primary btn-sm">Refresh</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!-- Your custom JS goes here -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script>
+
+    (function() {
+        "use strict";
+        // TODO: Create an ajax GET request for /data/inventory.json
+
+        var ajax = $.ajax("data/blog.json")
+
+
+        // TODO: Take the data from inventory.json and append it to the products table
+        //       HINT: Your data should come back as a JSON object; use console.log() to inspect
+        //             its contents and fields
+        //       HINT: You will want to target #insertProducts for your new HTML elements
+
+        // logs the json object
+            .done(function(ajax) {
+                console.log(ajax);
+            });
+
+        // transfers the json data to html
+        var blog = $('#posts');
+
+        ajax.done(function (data) {
+            data.forEach(function (item) {
+                blog.append("<div class=\"shadow-lg p-3 mb-5 bg-white\ rounded\">" +
+                    "<h1>" + item.title + "</h1>" +
+                    "<p>" + item.content + "</p>" +
+                    "<h2>" + item.categories + "</h2>" +
+                    "<p>" + item.date + "</p>" +
+                    "</div>")
+            });
+
+        });
+
+        // function for refresh button to load json data without refreshing the page.
+
+        $(function() {
+            $("#refreshButton").on("click", function() {
+                $("body").load('#posts');
+                return false;
+            })
+        })
+
+    })();
+
+</script>
+
+</body>
+</html>
