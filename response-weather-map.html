@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<!-- HTML5 Boilerplate -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine & Chrome Frame -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Example of the Responsive Grid System</title>
+
+    <!--  Linking map box and font  -->
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed&display=swap" rel="stylesheet">
+
+    <meta name="description" content="This is the Responsive Grid System, a quick, easy and flexible way to create a responsive web site.">
+    <meta name="keywords" content="responsive, grid, system, web design">
+    <meta http-equiv="cleartype" content="on">
+
+    <!-- Responsive and mobile friendly stuff -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style type="text/css">
+
+        body {
+            font-family: 'Fira Sans Extra Condensed', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /*THIS IS WHERE YOUR GRID GENERATOR INFO GOES*/
+        .parent {
+            display: grid;
+            grid-template-columns: repeat(5, .2fr);
+            grid-template-rows: repeat(10, .2fr);
+            grid-column-gap: 0px;
+            grid-row-gap: 0px;
+            border: 1px solid black;
+        }
+
+        .div1 {
+            grid-area: 1 / 1 / 2 / 6;
+            border: 1px solid black;
+        }
+
+        .div2 {
+            grid-area: 2 / 2 / 3 / 6;
+            color: #000000;
+            font-weight: bold;
+            text-shadow: 0px 2px 2px #FFFFFF;
+            font-size: 18px;
+            border: 1px solid black;
+        }
+
+        .div3 {
+            grid-area: 3 / 2 / 4 / 3;
+            background-color: lightgrey;
+            border: 2px solid black;
+            -webkit-box-shadow: 5px 5px 15px 5px #000000;
+            box-shadow: 5px 5px 15px 5px #000000;
+            border: 1px solid black;
+        }
+
+        .div4 {
+            grid-area: 3 / 3 / 4 / 4;
+            background-color: lightgrey;
+            border-top: 2px solid black;
+            border-bottom: 2px Solid black;
+            -webkit-box-shadow: 5px 5px 15px 5px #000000;
+            box-shadow: 5px 5px 15px 5px #000000;
+        }
+
+        .div5 {
+            grid-area: 3 / 4 / 4 / 5;
+            background-color: lightgrey;
+            border: 2px solid black;
+            -webkit-box-shadow: 5px 5px 15px 5px #000000;
+            box-shadow: 5px 5px 15px 5px #000000;
+        }
+
+        .div6 {
+            grid-area: 5 / 2 / 10 / 5;
+            border: 1px solid black;
+        }
+
+        .div7 {
+            grid-area: 10 / 2 / 11 / 5;
+            border: 1px solid black;
+        }
+
+        .div8 {
+            grid-area: 3 / 1 / 11 / 2;
+            border: 1px solid black;
+        }
+
+        .div9 {
+            grid-area: 3 / 5 / 11 / 6;
+            border: 1px solid black;
+        }
+
+        .div10 {
+            grid-area: 4 / 2 / 5 / 5;
+            border: 1px solid black;
+        }
+
+        .h1Styling {
+            text-align: center;
+            color: #FFFFFF;
+            text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #000000, 0 4px 0 #000000, 0 5px 0 #000000, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+        }
+
+        .h2Styling {
+            color: #FFFFFF;
+            font-weight: bold;
+            text-shadow: 2px 2px 2px #000000;
+        }
+
+        .dateObjectStyling {
+            color: #FFFFFF;
+            font-weight: bold;
+            text-shadow: 2px 2px 2px #000000;
+        }
+
+        .daysStyling {
+            text-align: center;
+            list-style: none;
+            padding-left: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        #map {
+            height: 300px;
+            -webkit-box-shadow: 5px 5px 15px 5px #000000;
+            box-shadow: 5px 5px 15px 5px #000000;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-----Mapbox---->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src="js/keys.js"></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
+
+<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css" type="text/css"/>
+<!---------------->
+
+<!--ENTER DIV INFORMATION FOR HTML HERE-->
+<div class="parent">
+    <div class="div1 innerDiv1"><h1 class="h1Styling">Weather Application</h1></div>
+    <div class="div2 innerDiv2"><h2 class="h2Styling">San Antonio</h2></div>
+    <div class="div3 innerDiv3"></div>
+    <div class="div4 innerDiv4"></div>
+    <div class="div5 innerDiv5"></div>
+    <div id="map" class="div6 innerDiv6"></div>
+    <div class="div7"></div>
+    <div class="div8"></div>
+    <div class="div9"></div>
+    <div class="div10"></div>
+</div>
+
+<!------------------Scripts------------------->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="js/keys.js"></script>
+<script>
+    // calls for a locations weather information by lat and long coordinates. //
+    $.ajax("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done
+
+    // converts time into a string and console logs it. //
+    (function (data) {
+
+        // shows full data from darkSky
+        console.log(data);
+
+        // shows current time
+        var dateObject = new Date(data.currently.time * 1000);
+        console.log(dateObject.toString());
+        $(".innerDiv2").append("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
+
+        //================== Background Video Info ===================//
+
+        // TODO: shows icon
+        var backgroundVidSrc = "video/" + data.daily.data[0].icon + '.mp4';
+
+        $(".innerBody").append('<video autoplay muted loop> <source src="' + backgroundVidSrc + '"></video>');
+
+        //=============== Day 1 (index 0) Info ================//
+
+        // TODO: shows date // DONE
+        var day1Date = new Date(data.daily.data[0].time * 1000);
+        var day1split = day1Date.toString().split(" ");
+        var day1join = day1split[0] + " " + day1split[1] + " " + day1split[2] + " ";
+
+        // TODO: shows icon
+        var imgSrc = "icon/" + data.daily.data[0].icon + '.png';
+
+        // TODO: shows high and low temperatures // DONE
+        var day1HighTemp = parseInt(data.daily.data[0].temperatureHigh);
+        var day1LowTemp = parseInt(data.daily.data[0].temperatureLow);
+
+        // TODO: shows weather summary // DONE
+        var day1Summary = (data.daily.data[0].summary);
+
+        // TODO: shows precipitation probability // DONE
+        var day1Precip = parseInt(data.daily.data[0].precipProbability * 100);
+        console.log(day1Precip);
+
+        // TODO: shows humidity // DONE
+        var day1Humidity = (data.daily.data[0].humidity * 100);
+
+        // TODO: shows wind speed // DONE
+        var day1Wind = (data.daily.data[0].windSpeed);
+
+        // appending all the data and writing it into div 3 as an unordered list
+        $(".innerDiv3").append(
+            "<ul class=\"daysStyling\">" +
+            "<li>" + day1join.toUpperCase() + "</li>" +
+            "<li>" + '<img src="' + imgSrc + '" alt="" />' + "</li>" +
+            "<li>" + "High: " + day1HighTemp + "&#176;" + " / " + " Low: " + day1LowTemp + "&#176;" + "</li>" +
+            "<li>" + day1Summary + "</li>" +
+            "<li>" + "Chance of Rain: " + day1Precip + "%" + "</li>" +
+            "<li>" + "Humidity:" + " " + day1Humidity + "</li>" +
+            "<li>" + "Wind:" + " " + day1Wind + " mph" + "</li>" +
+            "</ul>");
+
+        //=============== Day 2 Info ================//
+
+        // TODO: shows day 2 (at index 1) date // DONE
+        var day2Date = new Date(data.daily.data[1].time * 1000);
+        var day2split = day2Date.toString().split(" ");
+        var day2join = day2split[0] + " " + day2split[1] + " " + day2split[2] + " ";
+
+        // TODO: shows icon
+        var imgSrc2 = "icon/" + data.daily.data[1].icon + '.png';
+
+        // TODO: shows day 2 (at index 1) high and low temperatures // DONE
+        var day2HighTemp = parseInt(data.daily.data[1].temperatureHigh);
+        var day2LowTemp = parseInt(data.daily.data[1].temperatureLow);
+
+        // TODO: shows day 2 (at index 1) weather summary // DONE
+        var day2Summary = (data.daily.data[1].summary);
+
+        // TODO: shows precipitation probability // DONE
+        var day2Precip = parseInt(data.daily.data[1].precipProbability * 100);
+        console.log(day2Precip);
+
+        // TODO: shows day 2 (at index 1) humidity // DONE
+        var day2Humidity = (data.daily.data[1].humidity * 100);
+
+        // TODO: shows day 2 (at index 1) humidity // DONE
+        var day2Wind = (data.daily.data[1].windSpeed);
+
+        // appending all the data and writing it into div 3 as an unordered list
+        $(".innerDiv4").append(
+            "<ul class=\"daysStyling\">" +
+            "<li>" + day2join.toUpperCase() + "</li>" +
+            "<li>" + '<img src="' + imgSrc2 + '" alt="" />' + "</li>" +
+            "<li>" + "High: " + day2HighTemp + "&#176;" + " / " + " Low: " + day2LowTemp + "&#176;" + "</li>" +
+            "<li>" + day2Summary + "</li>" +
+            "<li>" + "Chance of Rain: " + day2Precip + "%" + "</li>" +
+            "<li>" + "Humidity:" + " " + day2Humidity + "</li>" +
+            "<li>" + "Wind:" + " " + day2Wind + " mph" + "</li>" +
+            "</ul>");
+
+        //=============== Day 3 Info ================//
+
+        // TODO: shows day 3 (at index 2) date // DONE
+        var day3Date = new Date(data.daily.data[2].time * 1000);
+        var day3split = day3Date.toString().split(" ");
+        var day3join = day3split[0] + " " + day3split[1] + " " + day3split[2] + " ";
+
+        // TODO: shows icon
+        var imgSrc3 = "icon/" + data.daily.data[2].icon + '.png';
+
+        // TODO: shows day 3 (at index 1) high and low temperatures // DONE
+        var day3HighTemp = parseInt(data.daily.data[2].temperatureHigh);
+        var day3LowTemp = parseInt(data.daily.data[2].temperatureLow);
+
+        // TODO: shows day 3 (at index 2) weather summary // DONE
+        var day3Summary = (data.daily.data[2].summary);
+
+        // TODO: shows precipitation probability // DONE
+        var day3Precip = parseInt(data.daily.data[2].precipProbability * 100);
+        console.log(day3Precip);
+
+        // TODO: shows day 3 (at index 2) humidity // DONE
+        var day3Humidity = (data.daily.data[2].humidity * 100);
+
+        // TODO: shows day 3 (at index 2) humidity // DONE
+        var day3Wind = (data.daily.data[2].windSpeed);
+
+        // appending all the data and writing it into div 3 as an unordered list
+        $(".innerDiv5").append(
+            "<ul class=\"daysStyling\">" +
+            "<li>" + day3join.toUpperCase() + "</li>" +
+            "<li>" + '<img src="' + imgSrc3 + '" alt="" />' + "</li>" +
+            "<li>" + "High: " + day3HighTemp + "&#176;" + " / " + " Low: " + day3LowTemp + "&#176;" + "</li>" +
+            "<li>" + day3Summary + "</li>" +
+            "<li>" + "Chance of Rain: " + day2Precip + "%" + "</li>" +
+            "<li>" + "Humidity:" + " " + day3Humidity + "</li>" +
+            "<li>" + "Wind:" + " " + day3Wind + " mph" + "</li>" +
+            "</ul>");
+        //===========================================//
+
+
+    });
+
+    //=========== Map ============//
+    mapboxgl.accessToken = mapboxToken;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        zoom: 10,
+        center: [-98.4916, 29.4252]
+    });
+
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
+
+</script>
+
+
+</body>
+</html>
