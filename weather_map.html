@@ -9,13 +9,13 @@
 
 <style>
 
-    * {
+    body {
         box-sizing: border-box;
-        padding: 0;
-        margin-top: 1fr;
-        margin-bottom: 1fr;
         font-family: sans-serif;
-        grid-row-gap: 10px;
+        background-color: cornflowerblue;
+        margin: 0;
+        height: 100%;
+        position: fixed;
     }
 
     .parent {
@@ -24,11 +24,20 @@
         grid-template-rows: repeat(10, 1fr);
         height: 100vh;
         width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
 
     .div1 { grid-area: 1 / 1 / 2 / 6; }
 
-    .div2 { grid-area: 2 / 2 / 3 / 6; }
+    .div2 {
+        grid-area: 2 / 2 / 3 / 6;
+        color: #FFFFFF;
+        text-shadow: 0px 2px 2px #FFFFFF;
+    }
 
     .div3 {
         grid-area: 3 / 2 / 4 / 3;
@@ -61,25 +70,43 @@
 
     .h1Styling {
         text-align: center;
+        color: #FFFFFF;
+        text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+
+
+    }
+
+    .h2Styling {
+        color: #FFFFFF;
+        font-weight: bold;
+        text-shadow: 2px 2px 2px #000000;
     }
 
     .dateObjectStyling {
+        color: #FFFFFF;
         font-weight: bold;
+        text-shadow: 2px 2px 2px #000000;
     }
 
     .daysStyling {
-        margin-top: 20px;
         text-align: center;
         list-style: none;
+        padding-left: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin: 0;
+        -webkit-box-shadow: 5px 5px 15px 5px #000000;
+        box-shadow: 5px 5px 15px 5px #000000;
     }
 
     #map {
-        margin-top: 1fr;
-    }
+        height: 200px;
+        -webkit-box-shadow: 5px 5px 15px 5px #000000;
+        box-shadow: 5px 5px 15px 5px #000000;    }
 
 </style>
 
-<body>
+<body class="innerBody">
 
 <!-----Mapbox---->
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
@@ -126,6 +153,13 @@
         var dateObject = new Date(data.currently.time * 1000);
         console.log(dateObject.toString());
         $(".innerDiv2").append("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
+
+        //================== Background Info ===================//
+
+        // TODO: shows icon
+        var backgroundImgSrc = "img/" + data.daily.data[0].icon + '.jpg';
+
+        $(".innerBody").append('<img src="' + backgroundImgSrc + '" alt="" />');
 
         //=============== Day 1 (index 0) Info ================//
 
