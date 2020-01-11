@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <title>Weather Map Project</title>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed&display=swap" rel="stylesheet">
 </head>
 
 <style>
 
     body {
         box-sizing: border-box;
-        font-family: sans-serif;
+        font-family: 'Fira Sans Extra Condensed', sans-serif;
         background-color: cornflowerblue;
         margin: 0;
         height: 100%;
@@ -35,8 +36,10 @@
 
     .div2 {
         grid-area: 2 / 2 / 3 / 6;
-        color: #FFFFFF;
+        color: #000000;
+        font-weight: bold;
         text-shadow: 0px 2px 2px #FFFFFF;
+        font-size: 18px;
     }
 
     .div3 {
@@ -77,9 +80,7 @@
     .h1Styling {
         text-align: center;
         color: #FFFFFF;
-        text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
-
-
+        text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #000000, 0 4px 0 #000000, 0 5px 0 #000000, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
     }
 
     .h2Styling {
@@ -158,12 +159,12 @@
         console.log(dateObject.toString());
         $(".innerDiv2").append("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
 
-        //================== Background Info ===================//
+        //================== Background Video Info ===================//
 
         // TODO: shows icon
-        var backgroundImgSrc = "img/" + data.daily.data[0].icon + '.jpg';
+        var backgroundVidSrc = "video/" + data.daily.data[0].icon + '.mp4';
 
-        $(".innerBody").append('<img src="' + backgroundImgSrc + '" alt="" />');
+        $(".innerBody").append('<video autoplay muted loop> <source src="' + backgroundVidSrc + '"></video>');
 
         //=============== Day 1 (index 0) Info ================//
 
@@ -228,7 +229,7 @@
             "<li>" + day2join.toUpperCase() + "</li>" +
             "<li>" + '<img src="' + imgSrc2 + '" alt="" />' + "</li>" +
             "<li>" + "High: " + day2HighTemp + "&#176;" + " / " + " Low: " + day2LowTemp + "&#176;" + "</li>" +
-            "<li>" + "This is a test:" + day2Summary + "</li>" +
+            "<li>" + day2Summary + "</li>" +
             "<li>" + "Humidity:" + " " + day2Humidity + "</li>" +
             "<li>" + "Wind:" + " " + day2Wind + " mph" + "</li>" +
             "</ul>");
