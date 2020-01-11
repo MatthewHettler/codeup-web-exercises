@@ -43,6 +43,8 @@
         grid-area: 3 / 2 / 4 / 3;
         background-color: lightgrey;
         border: 2px solid black;
+        -webkit-box-shadow: 5px 5px 15px 5px #000000;
+        box-shadow: 5px 5px 15px 5px #000000;
     }
 
     .div4 {
@@ -50,12 +52,16 @@
         background-color: lightgrey;
         border-top: 2px solid black;
         border-bottom: 2px Solid black;
+        -webkit-box-shadow: 5px 5px 15px 5px #000000;
+        box-shadow: 5px 5px 15px 5px #000000;
     }
 
     .div5 {
         grid-area: 3 / 4 / 4 / 5;
         background-color: lightgrey;
         border: 2px solid black;
+        -webkit-box-shadow: 5px 5px 15px 5px #000000;
+        box-shadow: 5px 5px 15px 5px #000000;
     }
 
     .div6 { grid-area: 5 / 2 / 10 / 5; }
@@ -94,15 +100,13 @@
         padding-left: 0;
         padding-top: 10px;
         padding-bottom: 10px;
-        margin: 0;
-        -webkit-box-shadow: 5px 5px 15px 5px #000000;
-        box-shadow: 5px 5px 15px 5px #000000;
     }
 
     #map {
         height: 200px;
         -webkit-box-shadow: 5px 5px 15px 5px #000000;
-        box-shadow: 5px 5px 15px 5px #000000;    }
+        box-shadow: 5px 5px 15px 5px #000000;
+    }
 
 </style>
 
@@ -224,7 +228,7 @@
             "<li>" + day2join.toUpperCase() + "</li>" +
             "<li>" + '<img src="' + imgSrc2 + '" alt="" />' + "</li>" +
             "<li>" + "High: " + day2HighTemp + "&#176;" + " / " + " Low: " + day2LowTemp + "&#176;" + "</li>" +
-            "<li>" + day2Summary + "</li>" +
+            "<li>" + "This is a test:" + day2Summary + "</li>" +
             "<li>" + "Humidity:" + " " + day2Humidity + "</li>" +
             "<li>" + "Wind:" + " " + day2Wind + " mph" + "</li>" +
             "</ul>");
