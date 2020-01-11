@@ -67,7 +67,10 @@
         box-shadow: 5px 5px 15px 5px #000000;
     }
 
-    .div6 { grid-area: 5 / 2 / 10 / 5; }
+    .div6 {
+        grid-area: 5 / 2 / 10 / 5;
+        overflow: scroll;
+    }
 
     .div7 { grid-area: 10 / 2 / 11 / 5; }
 
@@ -183,6 +186,10 @@
         // TODO: shows weather summary // DONE
         var day1Summary = (data.daily.data[0].summary);
 
+        // TODO: shows precipitation probability // DONE
+        var day1Precip = parseInt(data.daily.data[0].precipProbability * 100);
+        console.log(day1Precip);
+
         // TODO: shows humidity // DONE
         var day1Humidity = (data.daily.data[0].humidity * 100);
 
@@ -196,6 +203,7 @@
             "<li>" + '<img src="' + imgSrc + '" alt="" />' + "</li>" +
             "<li>" + "High: " + day1HighTemp + "&#176;" + " / " + " Low: " + day1LowTemp + "&#176;" + "</li>" +
             "<li>" + day1Summary + "</li>" +
+            "<li>" + "Chance of Rain: " + day1Precip + "%" + "</li>" +
             "<li>" + "Humidity:" + " " + day1Humidity + "</li>" +
             "<li>" + "Wind:" + " " + day1Wind + " mph" + "</li>" +
             "</ul>");
@@ -217,6 +225,10 @@
         // TODO: shows day 2 (at index 1) weather summary // DONE
         var day2Summary = (data.daily.data[1].summary);
 
+        // TODO: shows precipitation probability // DONE
+        var day2Precip = parseInt(data.daily.data[1].precipProbability * 100);
+        console.log(day2Precip);
+
         // TODO: shows day 2 (at index 1) humidity // DONE
         var day2Humidity = (data.daily.data[1].humidity * 100);
 
@@ -230,6 +242,7 @@
             "<li>" + '<img src="' + imgSrc2 + '" alt="" />' + "</li>" +
             "<li>" + "High: " + day2HighTemp + "&#176;" + " / " + " Low: " + day2LowTemp + "&#176;" + "</li>" +
             "<li>" + day2Summary + "</li>" +
+            "<li>" + "Chance of Rain: " + day2Precip + "%" + "</li>" +
             "<li>" + "Humidity:" + " " + day2Humidity + "</li>" +
             "<li>" + "Wind:" + " " + day2Wind + " mph" + "</li>" +
             "</ul>");
@@ -251,6 +264,10 @@
         // TODO: shows day 3 (at index 2) weather summary // DONE
         var day3Summary = (data.daily.data[2].summary);
 
+        // TODO: shows precipitation probability // DONE
+        var day3Precip = parseInt(data.daily.data[2].precipProbability * 100);
+        console.log(day3Precip);
+
         // TODO: shows day 3 (at index 2) humidity // DONE
         var day3Humidity = (data.daily.data[2].humidity * 100);
 
@@ -264,6 +281,7 @@
             "<li>" + '<img src="' + imgSrc3 + '" alt="" />' + "</li>" +
             "<li>" + "High: " + day3HighTemp + "&#176;" + " / " + " Low: " + day3LowTemp + "&#176;" + "</li>" +
             "<li>" + day3Summary + "</li>" +
+            "<li>" + "Chance of Rain: " + day2Precip + "%" + "</li>" +
             "<li>" + "Humidity:" + " " + day3Humidity + "</li>" +
             "<li>" + "Wind:" + " " + day3Wind + " mph" + "</li>" +
             "</ul>");
