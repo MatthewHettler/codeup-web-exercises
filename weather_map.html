@@ -1,10 +1,13 @@
-
 <!DOCTYPE html>
 <!-- HTML5 Boilerplate -->
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 
 <head>
 
@@ -18,7 +21,8 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed&display=swap" rel="stylesheet">
 
-    <meta name="description" content="This is the Responsive Grid System, a quick, easy and flexible way to create a responsive web site.">
+    <meta name="description"
+          content="This is the Responsive Grid System, a quick, easy and flexible way to create a responsive web site.">
     <meta name="keywords" content="responsive, grid, system, web design">
     <meta http-equiv="cleartype" content="on">
 
@@ -123,7 +127,7 @@
         .h1Styling {
             text-align: center;
             color: #FFFFFF;
-            text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #000000, 0 4px 0 #000000, 0 5px 0 #000000, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+            text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #000000, 0 4px 0 #000000, 0 5px 0 #000000, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
         }
 
         .h2Styling {
@@ -157,6 +161,23 @@
             z-index: 1; /* Puts the video behind all the other divs on the page */
         }
 
+        /*Text Animation*/
+
+        .char {
+            animation: an 1s ease-out 1 both;
+        }
+
+        @keyframes an {
+            from {
+                opacity: 0;
+                transform: perspective(500px) translate3d(-35px, -40px, -150px) rotate3d(1, -1, 0, 35deg);
+            }
+            to {
+                opacity: 1;
+                transform: perspective(500px) translate3d(0, 0, 0);
+            }
+        }
+
     </style>
 
 </head>
@@ -174,16 +195,18 @@
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
-<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css" type="text/css"/>
+<link rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+      type="text/css"/>
 <!---------------->
 
 <!--ENTER DIV INFORMATION FOR HTML HERE-->
 <div class="parent">
     <div class="div1 innerDiv1"><h1 class="h1Styling">Weather Application</h1></div>
     <div class="div2 innerDiv2"><h2 class="h2Styling">San Antonio</h2></div>
-    <div class="div3 innerDiv3"></div>
-    <div class="div4 innerDiv4"></div>
-    <div class="div5 innerDiv5"></div>
+    <div class="div3 innerDiv3 char" id="text"></div>
+    <div class="div4 innerDiv4 char" id="text"></div>
+    <div class="div5 innerDiv5 char" id="text"></div>
     <div id="map" class="div6 innerDiv6"></div>
     <div class="div7 innerDiv7"></div>
     <div class="div8 innerDiv8"></div>
@@ -196,6 +219,25 @@
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script src="js/keys.js"></script>
 <script>
+
+    <!--text animation-->
+
+    var text = document.getElementById('text');
+    var newDom = '';
+    var animationDelay = 6;
+
+    for (let i = 0; i < text.innerText.length; i++) {
+        newDom += '<span class="char">' + (text.innerText[i] == ' ' ? '&nbsp;' : text.innerText[i]) + '</span>';
+    }
+
+    text.innerHTML = newDom;
+    var length = text.children.length;
+
+    for (let i = 0; i < length; i++) {
+        text.children[i].style['animation-delay'] = animationDelay * i + 'ms';
+    }
+
+
     // calls for a locations weather information by lat and long coordinates. //
     $.ajax("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done
 
