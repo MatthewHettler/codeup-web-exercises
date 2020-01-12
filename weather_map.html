@@ -107,9 +107,12 @@
             border: 1px solid black;
             z-index: 2;
             color: #FFFFFF;
+            font-size: 30px;
+            text-shadow: 2px 2px 2px #000000;
+            text-align: center;
             display: flex;
-            justify-content: right;
-            align-items: end;
+            justify-content: center;
+            align-items: center;
         }
 
         .div8 {
@@ -129,6 +132,10 @@
             border: 1px solid black;
             z-index: 2;
             text-align: right;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 2px #000000;
+            display: flex;
+            justify-content: right;
         }
 
         .h1Styling {
@@ -216,10 +223,10 @@
     <div class="div4 innerDiv4 char" id="text"></div>
     <div class="div5 innerDiv5 char" id="text"></div>
     <div id="map" class="div6 innerDiv6"></div>
-    <div class="div7 innerDiv7"><em>*Tip: if using coordinates, input longitude first then latitude: Example: -98.491142,29.424349</em></div>
+    <div class="div7 innerDiv7">Search for Weather in Your Area</div>
     <div class="div8 innerDiv8"></div>
     <div class="div9 innerDiv9"></div>
-    <div class="div10 innerDiv10"></div>
+    <div class="div10 innerDiv10"><em>*Tip: if using coordinates, input longitude first then latitude: Example: -98.491142,29.424349</em></div>
 </div>
 
 <!------------------Scripts------------------->
@@ -404,7 +411,7 @@
     * https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
     */
     var coordinatesGeocoder = function (query) {
-    // match anything which looks like a decimal degrees coordinate pair
+        // match anything which looks like a decimal degrees coordinate pair
         var matches = query.match(
             /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
         );
