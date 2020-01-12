@@ -57,9 +57,10 @@
         }
 
         .div2 {
-            grid-area: 2 / 2 / 3 / 6;
+            grid-area: 2 / 1 / 3 / 6;
             color: #000000;
             font-weight: bold;
+            text-align: center;
             text-shadow: 0px 2px 2px #FFFFFF;
             font-size: 18px;
             border: 1px solid black;
@@ -130,9 +131,10 @@
             text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #000000, 0 4px 0 #000000, 0 5px 0 #000000, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
         }
 
-        .h2Styling {
+        .pStyling {
             color: #FFFFFF;
             font-weight: bold;
+            font-size: 30px;
             text-shadow: 2px 2px 2px #000000;
         }
 
@@ -151,7 +153,7 @@
         }
 
         #map {
-            height: 300px;
+            height: 350px;
             -webkit-box-shadow: 5px 5px 15px 5px #000000;
             box-shadow: 5px 5px 15px 5px #000000;
         }
@@ -203,7 +205,7 @@
 <!--ENTER DIV INFORMATION FOR HTML HERE-->
 <div class="parent">
     <div class="div1 innerDiv1"><h1 class="h1Styling">Weather Application</h1></div>
-    <div class="div2 innerDiv2"><h2 class="h2Styling">San Antonio</h2></div>
+    <div class="div2 innerDiv2"><p class="pStyling">San Antonio</p></div>
     <div class="div3 innerDiv3 char" id="text"></div>
     <div class="div4 innerDiv4 char" id="text"></div>
     <div class="div5 innerDiv5 char" id="text"></div>
@@ -388,6 +390,68 @@
         zoom: 10,
         center: [-98.4916, 29.4252]
     });
+
+    // Adds a search bar that accepts coordinates and addresses.
+
+    /* given a query in the form "lng, lat" or "lat, lng" returns the matching
+    * geographic coordinate(s) as search results in carmen geojson format,
+    * https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
+    */
+    var coordinatesGeocoder = function (query) {
+    // match anything which looks like a decimal degrees coordinate pair
+        var matches = query.match(
+            /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+        );
+        if (!matches) {
+            return null;
+        }
+
+        function coordinateFeature(lng, lat) {
+            return {
+                center: [lng, lat],
+                geometry: {
+                    type: 'Point',
+                    coordinates: [lng, lat]
+                },
+                place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+                place_type: ['coordinate'],
+                properties: {},
+                type: 'Feature'
+            };
+        }
+
+        var coord1 = Number(matches[1]);
+        var coord2 = Number(matches[2]);
+        var geocodes = [];
+
+        if (coord1 < -90 || coord1 > 90) {
+// must be lng, lat
+            geocodes.push(coordinateFeature(coord1, coord2));
+        }
+
+        if (coord2 < -90 || coord2 > 90) {
+// must be lat, lng
+            geocodes.push(coordinateFeature(coord2, coord1));
+        }
+
+        if (geocodes.length === 0) {
+// else could be either lng, lat or lat, lng
+            geocodes.push(coordinateFeature(coord1, coord2));
+            geocodes.push(coordinateFeature(coord2, coord1));
+        }
+
+        return geocodes;
+    };
+
+    map.addControl(
+        new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            localGeocoder: coordinatesGeocoder,
+            zoom: 4,
+            placeholder: 'Address or Coordinates',
+            mapboxgl: mapboxgl
+        })
+    );
 
     // Add zoom and rotation controls to the map.
     map.addControl(new mapboxgl.NavigationControl());
