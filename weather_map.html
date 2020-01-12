@@ -81,6 +81,7 @@
             background-color: lightgrey;
             border-top: 2px solid black;
             border-bottom: 2px Solid black;
+            border-left: 2px Solid black;
             -webkit-box-shadow: 5px 5px 15px 5px #000000;
             box-shadow: 5px 5px 15px 5px #000000;
             z-index: 2;
@@ -102,9 +103,13 @@
         }
 
         .div7 {
-            grid-area: 10 / 2 / 11 / 5;
+            grid-area: 4 / 2 / 5 / 5;
             border: 1px solid black;
             z-index: 2;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: right;
+            align-items: end;
         }
 
         .div8 {
@@ -120,9 +125,10 @@
         }
 
         .div10 {
-            grid-area: 4 / 2 / 5 / 5;
+            grid-area: 10 / 2 / 11 / 5;
             border: 1px solid black;
             z-index: 2;
+            text-align: right;
         }
 
         .h1Styling {
@@ -210,7 +216,7 @@
     <div class="div4 innerDiv4 char" id="text"></div>
     <div class="div5 innerDiv5 char" id="text"></div>
     <div id="map" class="div6 innerDiv6"></div>
-    <div class="div7 innerDiv7"></div>
+    <div class="div7 innerDiv7"><em>*Tip: if using coordinates, input longitude first then latitude: Example: -98.491142,29.424349</em></div>
     <div class="div8 innerDiv8"></div>
     <div class="div9 innerDiv9"></div>
     <div class="div10 innerDiv10"></div>
