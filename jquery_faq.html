@@ -91,7 +91,7 @@
     <li>Denali National Park lies in the Alaska time zone.</li>
 </ul>
 <h3>Everglades</h3>
-<ul class="facts">
+<ul class="facts nonfacts">
     <li>Everglades National Park covers a total area of 1,507,850 acres.</li>
     <li>Everglades was made a national park on May 30, 1934.</li>
     <li>The entrance fee for Everglades is $25 per vehicle per week.</li>
@@ -158,7 +158,7 @@
 
     // TODO: The uls next to each h3 that contain facts about each park should start out hidden, and when the corresponding h3 is clicked, the display of the ul should be toggled with a sliding effect.
 
-        $(".facts").hide();
+        $(".facts .nonfacts").hide();
         $('h3').click(function() {
             $(this).next('ul').slideToggle();
         });
