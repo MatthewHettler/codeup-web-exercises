@@ -50,13 +50,13 @@
             grid-template-rows: repeat(10, .2fr);
             grid-column-gap: 0px;
             grid-row-gap: 0px;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
             background-color: lightskyblue;
         }
 
         .div1 {
             grid-area: 1 / 1 / 2 / 6;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
             z-index: 2;
         }
 
@@ -67,7 +67,7 @@
             text-align: center;
             text-shadow: 0px 2px 2px #FFFFFF;
             font-size: 18px;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
             z-index: 2;
         }
 
@@ -85,7 +85,6 @@
             background-color: lightgrey;
             border-top: 2px solid black;
             border-bottom: 2px Solid black;
-            border-left: 2px Solid black;
             -webkit-box-shadow: 5px 5px 15px 5px #000000;
             box-shadow: 5px 5px 15px 5px #000000;
             z-index: 2;
@@ -102,13 +101,13 @@
 
         .div6 {
             grid-area: 5 / 2 / 10 / 5;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
             z-index: 2;
         }
 
         .div7 {
             grid-area: 4 / 2 / 5 / 5;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
             z-index: 2;
             color: #FFFFFF;
             font-size: 30px;
@@ -121,19 +120,19 @@
 
         .div8 {
             grid-area: 3 / 1 / 11 / 2;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
             z-index: 2;
         }
 
         .div9 {
             grid-area: 3 / 5 / 11 / 6;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
             z-index: 2;
         }
 
         .div10 {
             grid-area: 10 / 2 / 11 / 5;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
             z-index: 2;
             text-align: center;
             color: #FFFFFF;
@@ -144,11 +143,17 @@
 
         .h1Styling {
             text-align: center;
+            padding-bottom: 7px;
             color: #FFFFFF;
+            background: #556677;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+            -webkit-box-shadow: 5px 5px 15px 5px #000000;
+            box-shadow: 5px 5px 15px 5px #000000;
             text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #000000, 0 4px 0 #000000, 0 5px 0 #000000, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
         }
 
-        .pStyling {
+        .h2Styling {
             color: #FFFFFF;
             padding: 0;
             margin-top: 0;
@@ -258,9 +263,10 @@
 
 <!--ENTER DIV INFORMATION FOR HTML HERE-->
 <div class="parent">
-    <div class="div1 innerDiv1"><h1 class="h1Styling">Weather Application</h1></div>
+    <div class="div1 innerDiv1"><h1 class="h1Styling">Weather Map Project</h1></div>
     <div class="div2 innerDiv2">
-        <h2 class="pStyling weather-location">San Antonio</h2>
+        <h2 class="h2Styling">3 Day Forecast For:</h2>
+        <h2 class="h2Styling weather-location">San Antonio</h2>
         <p class="dateAndTime"></p>
     </div>
     <div class="div3 innerDiv3 char" id="text"></div>
@@ -289,7 +295,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         zoom: 10,
-        center: [-98.4916, 29.4252]
+        center: [-98.4936, 29.4241]
     });
     /////////////////////////////////////////////////////// map marker  ///////////////////////////////////////////////////////////////////////
 
@@ -329,10 +335,10 @@
         // shows full data from darkSky
         console.log(data);
 
-        // shows current time
-        var dateObject = new Date(data.currently.time * 1000);
-        console.log(dateObject.toString());
-        $(".dateAndTime").append("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
+        // // shows current time
+        // var dateObject = new Date(data.currently.time * 1000);
+        // console.log(dateObject.toString());
+        // $(".dateAndTime").append("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
 
         //================== Background Video Info ===================//
 
@@ -469,10 +475,11 @@
         // // Pulling Weather
         $.get(weather).done(function (data) {
             console.log(data);
-            // shows current time
-            var dateObject = new Date(data.currently.time * 1000);
-            console.log(dateObject.toString());
-            $(".dateAndTime").html("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
+
+            // // shows current time
+            // var dateObject = new Date(data.currently.time * 1000);
+            // console.log(dateObject.toString());
+            // $(".dateAndTime").html("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
 
             //================== Background Video Info ===================//
 
@@ -630,10 +637,10 @@
                 .done(function (data) {
                     console.log(data);
 
-                    // shows current time
-                    var dateObject = new Date(data.currently.time * 1000);
-                    console.log(dateObject.toString());
-                    $(".dateAndTime").html("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
+                    // // shows current time
+                    // var dateObject = new Date(data.currently.time * 1000);
+                    // console.log(dateObject.toString());
+                    // $(".dateAndTime").html("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
 
                     //================== Background Video Info ===================//
 
