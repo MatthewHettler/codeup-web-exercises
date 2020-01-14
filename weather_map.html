@@ -31,6 +31,10 @@
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
+          type="text/css"/>
+
     <style type="text/css">
 
         body {
@@ -180,13 +184,18 @@
             font-style: normal;
             font-variant: normal;
             text-transform: none;
-            background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); border: 2px solid rgb(28, 110, 164); display: inline-block;}
+            background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%);
+            border: 2px solid rgb(28, 110, 164);
+            display: inline-block;
+        }
 
         .buttonStyling:hover {
-            background: #1C6EA4; }
+            background: #1C6EA4;
+        }
 
         .buttonStyling:active {
-            background: #144E75; }
+            background: #144E75;
+        }
 
         .inputStyling {
             height: 20px;
@@ -194,11 +203,15 @@
             margin-top: 10px;
         }
 
+        .searchStyling {
+            margin-top: 14px;
+            margin-right: 3px;
+        }
+
         ::placeholder {
             text-align: center;
             font-size: 16px;
             font-family: 'Fira Sans Extra Condensed', sans-serif;
-
         }
 
         #map {
@@ -235,26 +248,21 @@
 
 <body>
 
-<!-----Mapbox---->
-<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
-<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js"></script>
+<!-----Scripts---->
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
 <script src="js/keys.js"></script>
 <script src="js/mapbox-geocoder-utils.js"></script>
 
-<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-
-<link rel="stylesheet"
-      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css"
-      type="text/css"/>
 <!---------------->
 
 <!--ENTER DIV INFORMATION FOR HTML HERE-->
 <div class="parent">
     <div class="div1 innerDiv1"><h1 class="h1Styling">Weather Application</h1></div>
-    <div class="div2 innerDiv2"><p class="pStyling">San Antonio</p></div>
+    <div class="div2 innerDiv2">
+        <h2 class="pStyling weather-location">San Antonio</h2>
+        <p class="dateAndTime"></p>
+    </div>
     <div class="div3 innerDiv3 char" id="text"></div>
     <div class="div4 innerDiv4 char" id="text"></div>
     <div class="div5 innerDiv5 char" id="text"></div>
@@ -263,20 +271,34 @@
     <div class="div8 innerDiv8"></div>
     <div class="div9 innerDiv9"></div>
     <div class="div10 innerDiv10">
-        <form action="/action_page.php" method="get" id="form1">
-            Search: <input class="inputStyling" type="text" name="fname" placeholder="Address or Coordinates">
-        </form>
-        <button type="submit" form="form1" value="Submit" class="buttonStyling">Submit</button>
+        <p class="searchStyling">Search: </p><input type="text" id="userSearch" class="inputStyling"
+                                                    placeholder="Address">
+        <button id="button" type="button" class="buttonStyling">Submit</button>
         <br>
         <br>
     </div>
 </div>
 
-<!------------------Scripts------------------->
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="js/keys.js"></script>
 <script>
+
+    /////////////////////////////////////////////////////// map  ///////////////////////////////////////////////////////////////////////
+
+    //=========== Map ============//
+    mapboxgl.accessToken = mapboxToken;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        zoom: 10,
+        center: [-98.4916, 29.4252]
+    });
+    /////////////////////////////////////////////////////// map marker  ///////////////////////////////////////////////////////////////////////
+
+    //Default Marker Placed on San Antonio, TX
+    var marker = new mapboxgl.Marker({
+        draggable: true
+    })
+        .setLngLat([-98.4936, 29.4241])
+        .addTo(map);
 
     <!--text animation-->
 
@@ -299,6 +321,8 @@
     // calls for a locations weather information by lat and long coordinates. //
     $.ajax("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/29.4241,-98.4936").done
 
+    /////////////////////////////////////////////////// Default ////////////////////////////////////////////////////////////
+
     // converts time into a string and console logs it. //
     (function (data) {
 
@@ -308,7 +332,7 @@
         // shows current time
         var dateObject = new Date(data.currently.time * 1000);
         console.log(dateObject.toString());
-        $(".innerDiv2").append("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
+        $(".dateAndTime").append("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
 
         //================== Background Video Info ===================//
 
@@ -435,82 +459,315 @@
             "</ul>");
         //===========================================//
 
-
     });
 
-    //=========== Map ============//
-    mapboxgl.accessToken = mapboxToken;
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        zoom: 10,
-        center: [-98.4916, 29.4252]
+    ////////////////////////////////////////////////// draggable marker  ///////////////////////////////////////////////////////////////////////
+    function onDragEnd() {
+        var lngLat = marker.getLngLat();
+        console.log(lngLat);
+        var weather = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + darkSkyKey + "/" + lngLat.lat + "," + lngLat.lng;
+        // // Pulling Weather
+        $.get(weather).done(function (data) {
+            console.log(data);
+            // shows current time
+            var dateObject = new Date(data.currently.time * 1000);
+            console.log(dateObject.toString());
+            $(".dateAndTime").html("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
+
+            //================== Background Video Info ===================//
+
+            // TODO: shows icon
+            var backgroundVidSrc = "video/" + data.daily.data[0].icon + '.mp4';
+
+            $(".parent").append('<video autoplay muted loop class="videoStyling"> <source src="' + backgroundVidSrc + '"></video>');
+
+            //=============== Day 1 (index 0) Info ================//
+
+            // TODO: shows date // DONE
+            var day1Date = new Date(data.daily.data[0].time * 1000);
+            var day1split = day1Date.toString().split(" ");
+            var day1join = day1split[0] + " " + day1split[1] + " " + day1split[2] + " ";
+
+            // TODO: shows icon
+            var imgSrc = "icon/" + data.daily.data[0].icon + '.png';
+
+            // TODO: shows high and low temperatures // DONE
+            var day1HighTemp = parseInt(data.daily.data[0].temperatureHigh);
+            var day1LowTemp = parseInt(data.daily.data[0].temperatureLow);
+
+            // TODO: shows weather summary // DONE
+            var day1Summary = (data.daily.data[0].summary);
+
+            // TODO: shows precipitation probability // DONE
+            var day1Precip = parseInt(data.daily.data[0].precipProbability * 100);
+            console.log(day1Precip);
+
+            // TODO: shows humidity // DONE
+            var day1Humidity = (data.daily.data[0].humidity * 100);
+
+            // TODO: shows wind speed // DONE
+            var day1Wind = (data.daily.data[0].windSpeed);
+
+            // appending all the data and writing it into div 3 as an unordered list
+            $(".innerDiv3").html(
+                "<ul class=\"daysStyling\">" +
+                "<li>" + day1join.toUpperCase() + "</li>" +
+                "<li>" + '<img src="' + imgSrc + '" alt="" />' + "</li>" +
+                "<li>" + "High: " + day1HighTemp + "&#176;" + " / " + " Low: " + day1LowTemp + "&#176;" + "</li>" +
+                "<li>" + day1Summary + "</li>" +
+                "<li>" + "Chance of Rain: " + day1Precip + "%" + "</li>" +
+                "<li>" + "Humidity:" + " " + day1Humidity + "</li>" +
+                "<li>" + "Wind:" + " " + day1Wind + " mph" + "</li>" +
+                "</ul>");
+
+            //=============== Day 2 Info ================//
+
+            // TODO: shows day 2 (at index 1) date // DONE
+            var day2Date = new Date(data.daily.data[1].time * 1000);
+            var day2split = day2Date.toString().split(" ");
+            var day2join = day2split[0] + " " + day2split[1] + " " + day2split[2] + " ";
+
+            // TODO: shows icon
+            var imgSrc2 = "icon/" + data.daily.data[1].icon + '.png';
+
+            // TODO: shows day 2 (at index 1) high and low temperatures // DONE
+            var day2HighTemp = parseInt(data.daily.data[1].temperatureHigh);
+            var day2LowTemp = parseInt(data.daily.data[1].temperatureLow);
+
+            // TODO: shows day 2 (at index 1) weather summary // DONE
+            var day2Summary = (data.daily.data[1].summary);
+
+            // TODO: shows precipitation probability // DONE
+            var day2Precip = parseInt(data.daily.data[1].precipProbability * 100);
+            console.log(day2Precip);
+
+            // TODO: shows day 2 (at index 1) humidity // DONE
+            var day2Humidity = (data.daily.data[1].humidity * 100);
+
+            // TODO: shows day 2 (at index 1) humidity // DONE
+            var day2Wind = (data.daily.data[1].windSpeed);
+
+            // appending all the data and writing it into div 3 as an unordered list
+            $(".innerDiv4").html(
+                "<ul class=\"daysStyling\">" +
+                "<li>" + day2join.toUpperCase() + "</li>" +
+                "<li>" + '<img src="' + imgSrc2 + '" alt="" />' + "</li>" +
+                "<li>" + "High: " + day2HighTemp + "&#176;" + " / " + " Low: " + day2LowTemp + "&#176;" + "</li>" +
+                "<li>" + day2Summary + "</li>" +
+                "<li>" + "Chance of Rain: " + day2Precip + "%" + "</li>" +
+                "<li>" + "Humidity:" + " " + day2Humidity + "</li>" +
+                "<li>" + "Wind:" + " " + day2Wind + " mph" + "</li>" +
+                "</ul>");
+
+            //=============== Day 3 Info ================//
+
+            // TODO: shows day 3 (at index 2) date // DONE
+            var day3Date = new Date(data.daily.data[2].time * 1000);
+            var day3split = day3Date.toString().split(" ");
+            var day3join = day3split[0] + " " + day3split[1] + " " + day3split[2] + " ";
+
+            // TODO: shows icon
+            var imgSrc3 = "icon/" + data.daily.data[2].icon + '.png';
+
+            // TODO: shows day 3 (at index 1) high and low temperatures // DONE
+            var day3HighTemp = parseInt(data.daily.data[2].temperatureHigh);
+            var day3LowTemp = parseInt(data.daily.data[2].temperatureLow);
+
+            // TODO: shows day 3 (at index 2) weather summary // DONE
+            var day3Summary = (data.daily.data[2].summary);
+
+            // TODO: shows precipitation probability // DONE
+            var day3Precip = parseInt(data.daily.data[2].precipProbability * 100);
+            console.log(day3Precip);
+
+            // TODO: shows day 3 (at index 2) humidity // DONE
+            var day3Humidity = (data.daily.data[2].humidity * 100);
+
+            // TODO: shows day 3 (at index 2) humidity // DONE
+            var day3Wind = (data.daily.data[2].windSpeed);
+
+            // appending all the data and writing it into div 3 as an unordered list
+            $(".innerDiv5").html(
+                "<ul class=\"daysStyling\">" +
+                "<li>" + day3join.toUpperCase() + "</li>" +
+                "<li>" + '<img src="' + imgSrc3 + '" alt="" />' + "</li>" +
+                "<li>" + "High: " + day3HighTemp + "&#176;" + " / " + " Low: " + day3LowTemp + "&#176;" + "</li>" +
+                "<li>" + day3Summary + "</li>" +
+                "<li>" + "Chance of Rain: " + day2Precip + "%" + "</li>" +
+                "<li>" + "Humidity:" + " " + day3Humidity + "</li>" +
+                "<li>" + "Wind:" + " " + day3Wind + " mph" + "</li>" +
+                "</ul>");
+            //===========================================//
+
+            var mapCity = reverseGeocode(lngLat, mapboxToken);
+            mapCity.then(function(result) {
+                $('.weather-location').html(result);
+                console.log(result);
+            });
+        });
+    }
+
+    marker.on('dragend', onDragEnd);
+
+    /////////////////////////////////////////////////// search bar  ///////////////////////////////////////////////////////////////////////
+
+    $(document).ready(function () {
+        $('#userSearch').keypress(function (e) {
+            if (e.keyCode == 13)
+                $('#button').click();
+        });
     });
 
-    // Adds a search bar that accepts coordinates and addresses.
+    //Function for button search
+    $('#button').click(function () {
+        var search = $(userSearch).val();
+        console.log(search);
+        //Use geocode function to get coordinates based on a physical address then store
+        geocode(search, mapboxToken).then(function (result) {
+            var long = result[0].toString();
+            var lat = result[1].toString();
+            $.ajax("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey + "/" + lat + ", " + long)
+                .done(function (data) {
+                    console.log(data);
 
-    /* given a query in the form "lng, lat" or "lat, lng" returns the matching
-    * geographic coordinate(s) as search results in carmen geojson format,
-    * https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
-    */
-//     var coordinatesGeocoder = function (query) {
-//         // match anything which looks like a decimal degrees coordinate pair
-//         var matches = query.match(
-//             /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
-//         );
-//         if (!matches) {
-//             return null;
-//         }
-//
-//         function coordinateFeature(lng, lat) {
-//             return {
-//                 center: [lng, lat],
-//                 geometry: {
-//                     type: 'Point',
-//                     coordinates: [lng, lat]
-//                 },
-//                 place_name: 'Lat: ' + lat + ' Lng: ' + lng,
-//                 place_type: ['coordinate'],
-//                 properties: {},
-//                 type: 'Feature'
-//             };
-//         }
-//
-//         var coord1 = Number(matches[1]);
-//         var coord2 = Number(matches[2]);
-//         var geocodes = [];
-//
-//         if (coord1 < -90 || coord1 > 90) {
-// // must be lng, lat
-//             geocodes.push(coordinateFeature(coord1, coord2));
-//         }
-//
-//         if (coord2 < -90 || coord2 > 90) {
-// // must be lat, lng
-//             geocodes.push(coordinateFeature(coord2, coord1));
-//         }
-//
-//         if (geocodes.length === 0) {
-// // else could be either lng, lat or lat, lng
-//             geocodes.push(coordinateFeature(coord1, coord2));
-//             geocodes.push(coordinateFeature(coord2, coord1));
-//         }
-//
-//         return geocodes;
-//     };
-//
-//     map.addControl(
-//         new MapboxGeocoder({
-//             accessToken: mapboxgl.accessToken,
-//             localGeocoder: coordinatesGeocoder,
-//             zoom: 4,
-//             placeholder: 'Address or Coordinates',
-//             mapboxgl: mapboxgl
-//         })
-//     );
+                    // shows current time
+                    var dateObject = new Date(data.currently.time * 1000);
+                    console.log(dateObject.toString());
+                    $(".dateAndTime").html("Today's Date & Time:" + "<p class=\"dateObjectStyling\">" + dateObject + "</p>"); // writes info into div 2
 
-    // Add zoom and rotation controls to the map.
-    map.addControl(new mapboxgl.NavigationControl());
+                    //================== Background Video Info ===================//
+
+                    // TODO: shows icon
+                    var backgroundVidSrc = "video/" + data.daily.data[0].icon + '.mp4';
+
+                    $(".parent").append('<video autoplay muted loop class="videoStyling"> <source src="' + backgroundVidSrc + '"></video>');
+
+                    //=============== Day 1 (index 0) Info ================//
+
+                    // TODO: shows date // DONE
+                    var day1Date = new Date(data.daily.data[0].time * 1000);
+                    var day1split = day1Date.toString().split(" ");
+                    var day1join = day1split[0] + " " + day1split[1] + " " + day1split[2] + " ";
+
+                    // TODO: shows icon
+                    var imgSrc = "icon/" + data.daily.data[0].icon + '.png';
+
+                    // TODO: shows high and low temperatures // DONE
+                    var day1HighTemp = parseInt(data.daily.data[0].temperatureHigh);
+                    var day1LowTemp = parseInt(data.daily.data[0].temperatureLow);
+
+                    // TODO: shows weather summary // DONE
+                    var day1Summary = (data.daily.data[0].summary);
+
+                    // TODO: shows precipitation probability // DONE
+                    var day1Precip = parseInt(data.daily.data[0].precipProbability * 100);
+                    console.log(day1Precip);
+
+                    // TODO: shows humidity // DONE
+                    var day1Humidity = (data.daily.data[0].humidity * 100);
+
+                    // TODO: shows wind speed // DONE
+                    var day1Wind = (data.daily.data[0].windSpeed);
+
+                    // appending all the data and writing it into div 3 as an unordered list
+                    $(".innerDiv3").html(
+                        "<ul class=\"daysStyling\">" +
+                        "<li>" + day1join.toUpperCase() + "</li>" +
+                        "<li>" + '<img src="' + imgSrc + '" alt="" />' + "</li>" +
+                        "<li>" + "High: " + day1HighTemp + "&#176;" + " / " + " Low: " + day1LowTemp + "&#176;" + "</li>" +
+                        "<li>" + day1Summary + "</li>" +
+                        "<li>" + "Chance of Rain: " + day1Precip + "%" + "</li>" +
+                        "<li>" + "Humidity:" + " " + day1Humidity + "</li>" +
+                        "<li>" + "Wind:" + " " + day1Wind + " mph" + "</li>" +
+                        "</ul>");
+
+                    //=============== Day 2 Info ================//
+
+                    // TODO: shows day 2 (at index 1) date // DONE
+                    var day2Date = new Date(data.daily.data[1].time * 1000);
+                    var day2split = day2Date.toString().split(" ");
+                    var day2join = day2split[0] + " " + day2split[1] + " " + day2split[2] + " ";
+
+                    // TODO: shows icon
+                    var imgSrc2 = "icon/" + data.daily.data[1].icon + '.png';
+
+                    // TODO: shows day 2 (at index 1) high and low temperatures // DONE
+                    var day2HighTemp = parseInt(data.daily.data[1].temperatureHigh);
+                    var day2LowTemp = parseInt(data.daily.data[1].temperatureLow);
+
+                    // TODO: shows day 2 (at index 1) weather summary // DONE
+                    var day2Summary = (data.daily.data[1].summary);
+
+                    // TODO: shows precipitation probability // DONE
+                    var day2Precip = parseInt(data.daily.data[1].precipProbability * 100);
+                    console.log(day2Precip);
+
+                    // TODO: shows day 2 (at index 1) humidity // DONE
+                    var day2Humidity = (data.daily.data[1].humidity * 100);
+
+                    // TODO: shows day 2 (at index 1) humidity // DONE
+                    var day2Wind = (data.daily.data[1].windSpeed);
+
+                    // appending all the data and writing it into div 3 as an unordered list
+                    $(".innerDiv4").html(
+                        "<ul class=\"daysStyling\">" +
+                        "<li>" + day2join.toUpperCase() + "</li>" +
+                        "<li>" + '<img src="' + imgSrc2 + '" alt="" />' + "</li>" +
+                        "<li>" + "High: " + day2HighTemp + "&#176;" + " / " + " Low: " + day2LowTemp + "&#176;" + "</li>" +
+                        "<li>" + day2Summary + "</li>" +
+                        "<li>" + "Chance of Rain: " + day2Precip + "%" + "</li>" +
+                        "<li>" + "Humidity:" + " " + day2Humidity + "</li>" +
+                        "<li>" + "Wind:" + " " + day2Wind + " mph" + "</li>" +
+                        "</ul>");
+
+                    //=============== Day 3 Info ================//
+
+                    // TODO: shows day 3 (at index 2) date // DONE
+                    var day3Date = new Date(data.daily.data[2].time * 1000);
+                    var day3split = day3Date.toString().split(" ");
+                    var day3join = day3split[0] + " " + day3split[1] + " " + day3split[2] + " ";
+
+                    // TODO: shows icon
+                    var imgSrc3 = "icon/" + data.daily.data[2].icon + '.png';
+
+                    // TODO: shows day 3 (at index 1) high and low temperatures // DONE
+                    var day3HighTemp = parseInt(data.daily.data[2].temperatureHigh);
+                    var day3LowTemp = parseInt(data.daily.data[2].temperatureLow);
+
+                    // TODO: shows day 3 (at index 2) weather summary // DONE
+                    var day3Summary = (data.daily.data[2].summary);
+
+                    // TODO: shows precipitation probability // DONE
+                    var day3Precip = parseInt(data.daily.data[2].precipProbability * 100);
+                    console.log(day3Precip);
+
+                    // TODO: shows day 3 (at index 2) humidity // DONE
+                    var day3Humidity = (data.daily.data[2].humidity * 100);
+
+                    // TODO: shows day 3 (at index 2) humidity // DONE
+                    var day3Wind = (data.daily.data[2].windSpeed);
+
+                    // appending all the data and writing it into div 3 as an unordered list
+                    $(".innerDiv5").html(
+                        "<ul class=\"daysStyling\">" +
+                        "<li>" + day3join.toUpperCase() + "</li>" +
+                        "<li>" + '<img src="' + imgSrc3 + '" alt="" />' + "</li>" +
+                        "<li>" + "High: " + day3HighTemp + "&#176;" + " / " + " Low: " + day3LowTemp + "&#176;" + "</li>" +
+                        "<li>" + day3Summary + "</li>" +
+                        "<li>" + "Chance of Rain: " + day2Precip + "%" + "</li>" +
+                        "<li>" + "Humidity:" + " " + day3Humidity + "</li>" +
+                        "<li>" + "Wind:" + " " + day3Wind + " mph" + "</li>" +
+                        "</ul>");
+                    //===========================================//
+                });
+
+            map.flyTo({center: result, zoom: 10});
+            $(".weather-location").html(search.charAt(0).toUpperCase() + search.slice(1, search.length));
+            marker.setLngLat([long, lat]);
+        });
+    });
+
+    //===========================================================//
 
 </script>
 
