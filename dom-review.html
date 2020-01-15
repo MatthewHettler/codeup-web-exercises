@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom Test Review</title>
+</head>
+<body>
+
+<!--Script-->
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+
+<!--/////////////// Favorite Food List Start //////////////////-->
+
+<h1>Add Your Favorite Food!</h1>
+
+<form id="form1">
+    <input type="text" name="fname" placeholder="Food" id="userInput"><br>
+</form>
+
+<button type="submit" id="addInput" form="form1" value="Submit">Submit</button>
+
+<p>List:</p>
+<ul id="list"></ul>
+
+<hr>
+
+<!--/////////////// Favorite Food List End //////////////////-->
+
+<!--=================================================================================================================-->
+
+<!--/////////////// Change Me Heading Turns Purple Start //////////////////-->
+
+<h1>Double Click "Change Me"!</h1>
+
+<h4>Change Me</h4>
+
+<hr>
+
+<!--/////////////// Change Me Heading Turns Purple End //////////////////-->
+
+<!--=================================================================================================================-->
+
+<!--/////////////// Input Your Cohort Name Start //////////////////-->
+
+<h1>Input Your Cohort Name!</h1>
+
+<form id="form1">
+    <input type="text" name="fname" placeholder="Cohort Name" id="cohort-name"><br>
+</form>
+
+<button type="submit" id="change-cohort" form="form1" value="Submit">Update</button>
+
+<p id="my-cohort">My Cohort: </p>
+
+
+<hr>
+
+<!--/////////////// Input Your Cohort Name End //////////////////-->
+
+<!--=================================================================================================================-->
+
+<!--/////////////// Highlight Cohort Name in Yellow Start //////////////////-->
+
+<h1>Highlight Cohort Name in Yellow!</h1>
+
+<button type="submit" id="highlight" form="form1" value="Submit">Highlight</button>
+
+<hr>
+
+<!--/////////////// Highlight Cohort Name in Yellow End //////////////////-->
+
+<!--=================================================================================================================-->
+
+<!--/////////////// Set Container Background Color to Pink After 3 Seconds Start //////////////////-->
+
+<h1>Setting Container Background Color to Pink After 3 Seconds!</h1>
+
+<div class="container">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A asperiores delectus distinctio ducimus, enim, eos exercitationem magnam maxime modi possimus quis sed veniam voluptatem. Doloremque eligendi est excepturi non quam.
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab atque autem esse excepturi magnam modi quam ratione suscipit. Alias aliquam aperiam dolorem facere harum ipsa magni quisquam quo sint velit!
+</div>
+
+<hr>
+
+<!--/////////////// Set Container Background Color to Pink After 3 Seconds End //////////////////-->
+
+<!--=================================================================================================================-->
+
+<script>
+    "use strict";
+
+    // TODO: Allow the user to type in their favorite food into the input and append it to the list once the button is clicked.
+
+    $("#addInput").on("click", function(e) {
+        e.preventDefault();
+        var input = $('#userInput').val();
+        $("#list").append('<li>' + input + '</li>');
+    });
+
+    // TODO: When the heading 'Change Me' is double clicked, change its background-color to purple.
+
+    $('h4').dblclick(function () {
+        $(this).css('background-color', 'purple')
+    });
+
+    // TODO: Allow the user to input their cohort name. Once Update button is clicked, the text should update with the name of the cohort.
+
+    $('#change-cohort').on("click", function (e) {
+        e.preventDefault();
+        var cohort = $('#cohort-name').val();
+        $('#my-cohort').html('My Cohort:' + ' ' + cohort);
+    });
+
+    // TODO: When 'Highlight' button is clicked, change the background color of the cohort name to yellow.
+    $('#highlight').on('click', function (e) {
+        e.preventDefault();
+        $('#my-cohort').css('background-color', 'yellow')
+    });
+
+    // TODO: Write some JavaScript that changes the background-color of the container to pink after 3 seconds.
+
+    // $('.container').css('background-color', 'pink').delay(3000)
+    setTimeout(function () {
+        $('.container').css('background-color', 'pink');
+    }, 3000);
+
+</script>
+
+</body>
+</html>
