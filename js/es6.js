@@ -44,19 +44,19 @@ const users = [
 // to the languages array
 // TODO: replace the `var` keyword with `const`, then try to reassign a variable // DONE
 // declared as `const`
-const name = 'your_name_here';
-const email = '';
-const languages = [];
+const name = 'Europa';
+const email = 'europa@codeup.com';
+const languages = ['html', 'css', 'javascript', 'jquery', 'bootstrap', 'English', 'Spanish'];
 
-// const name = 'enter_your_name';
+// name = "Daniel";
 
 // TODO: rewrite the object literal using object property shorthand // DONE
-// users.push({
-//     name:name,
-//     email:email,
-//     languages:languages,
-// });
-//
+users.push({
+    name,
+    email,
+    languages
+});
+
 // console.log(users[5].name);
 // console.log(users[5].languages);
 
@@ -68,24 +68,24 @@ let names = [];
 // users.forEach(function(user) {
 //     return emails.push(user.email);
 // });
-//
-// // rewritten
-// users.forEach( (user) => {
-//     emails.push(user.email)
-// });
-//
+
+// rewritten
+users.forEach((user) => {
+    return emails.push(user.email)
+});
+
 // users.forEach(function(user) {
 //     return names.push(user.name);
 // });
-//
-// // rewritten
-// users.forEach( (user) => {
-//     names.push(user.name)
-// });
+
+// rewritten
+users.forEach((user) => {
+    return names.push(user.name)
+});
 
 // TODO: replace `var` with `let` in the following declaration // DONE
 let developers = [];
-users.forEach(function(user) {
+users.forEach((user) => {
     // TODO: rewrite the code below to use object destructuring assignment
     //       note that you can also use destructuring assignment in the function
     //       parameter definition
@@ -96,12 +96,13 @@ users.forEach(function(user) {
     const {name, email, languages} = user;
 
     // TODO: rewrite the assignment below to use template strings
-    developers.push(name + '\'s email is ' + email + name + ' knows ' + languages.join(', '));
+    // developers.push(name + '\'s email is ' + email + name + ' knows ' + languages.join(', '));
+
+    // rewrite
+    developers.push(`${name}'s email is ${email}, ${name} knows ${languages.join(', ')}`);
+// console.log(developers);
+
 });
-
-// rewrite
-developers.push(`${name}'s email is ${email}, ${name} knows ${languages.join(', ')}`);
-
 
 // TODO: Use `let` for the following variable
 let list = '<ul>';
@@ -112,7 +113,8 @@ for (let developer of developers) {
 
     // TODO: rewrite the assignment below to use template strings
     // list += '<li>' + ${developer} + '</li>';
+
     // rewrite
     document.getElementById('test').innerHTML += `<li> ${developer} </li>`;
 }
-list += '</ul>';
+list += `</ul>`;
