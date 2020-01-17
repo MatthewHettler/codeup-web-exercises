@@ -77,11 +77,21 @@ console.log(userNames);
 // let names = users.reduce(
 //     (stack, user) => {return stack += ` ${user.name}`; }, ''
 // );
-console.log(names);
+// console.log(names);
 
 // TODO: BONUS: Use .reduce to get the unique list of languages from the list of users.
-let userLanguages = users.filter(user => user.languages);
-console.log(userLanguages);
+let uniqueLang = users
+    .reduce((languages, usersLang) => {
+        usersLang.languages.forEach(function (language) {
+            if (languages.includes(language)){
+            } else {
+                languages.push(language);
+            }
+        });
+        return languages
+    }, []);
+
+console.log(uniqueLang);
 
 
 
