@@ -1,3 +1,9 @@
+const sayHello = (name) => `Hi, my name is ${name}!`;
+console.log(sayHello("Matthew"));
+
+const addFunction = (a, b) => `This is the solution: ${a + b}`;
+console.log(addFunction(5, 5));
+///////////////////////////////////////////////////////////////////
 /*
  * Complete the TODO items below
  */
