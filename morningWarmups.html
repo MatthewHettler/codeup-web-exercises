@@ -480,14 +480,27 @@
        ]
    };
 
-    let practiceWarmup = movieWarmup = ([movieList]) => {
-        for (var i = 1; i<=movieList; i++){
-            if (i.movieList.rating === 5) console.log(`$(movieList.title) is fantastic!`);
-            else if (i.movieList.rating === 1) console.log(`$(movieList.title) is terrible!`);
-            else if (i.movieList.rating !== 5 || 1) console.log(`$(movieList.title)`);
-            else console.log(i);
+    // let practiceWarmup = movieWarmup = ([movieList]) => {
+    //     for (var i = 1; i<=movieList; i++){
+    //         if (i.movieList.rating === 5) console.log(`$(movieList.title) is fantastic!`);
+    //         else if (i.movieList.rating === 1) console.log(`$(movieList.title) is terrible!`);
+    //         else if (i.movieList.rating !== 5 || 1) console.log(`$(movieList.title)`);
+    //         else console.log(i);
+    //     }
+    // };
+
+    const rateMovie = movies => {
+        for(let movie of movies){
+            if(movie.rating === '5'){
+                console.log(`${movie.title} is fantastic!`)
+            }else if(movie.rating === '1'){
+                console.log(`${movie.title} is terrible!`)
+            }else{
+                console.log(movie.title)
+            }
         }
-    }
+    };
+    rateMovie(movies);
 
 
 </script>
